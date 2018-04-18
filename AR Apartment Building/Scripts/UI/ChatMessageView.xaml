@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Assets.Scripts.UI.ChatMessageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Assets.Scripts.UI"          
+             xmlns:converters="clr-namespace:Assets.Scripts.Converters"
+             xmlns:enums="clr-namespace:Assets.Scripts.Enums"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="500">
+    <UserControl.Resources>
+        <converters:EqualityVisibilityConverter x:Key="EqualityVisConverter"/>
+    </UserControl.Resources>
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Text="{Binding Message}" 
+                 VerticalContentAlignment="Center"
+                 TextWrapping="Wrap" 
+                 Grid.ColumnSpan="2"
+                 Background="#7FD3D3D3"
+                 BorderBrush="#7FD3D3D3"
+                 BorderThickness="1"
+                 Focusable="False"
+                 IsReadOnly="True"
+                 FontFamily="../../Fonts/#Roboto" 
+                 FontSize="15"
+                 Visibility="{Binding Sender, Converter={StaticResource EqualityVisConverter}, ConverterParameter={x:Static enums:MessageSender.Customer}}"
+                 HorizontalAlignment="Stretch"/>
+        <TextBox Text="{Binding Message}" 
+                 VerticalContentAlignment="Center"
+                 TextWrapping="Wrap" 
+                 Grid.ColumnSpan="2"
+                 Grid.Column="1"
+                 BorderThickness="1"
+                 BorderBrush="#7FD3D3D3"
+                 Focusable="False"
+                 IsReadOnly="True"
+                 FontFamily="../../Fonts/#Roboto"
+                 Visibility="{Binding Sender, Converter={StaticResource EqualityVisConverter}, ConverterParameter={x:Static enums:MessageSender.Agent}}"
+                 HorizontalAlignment="Stretch" 
+                 FontSize="15"/>
+    </Grid>
+</UserControl>

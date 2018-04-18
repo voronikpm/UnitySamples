@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Assets.Scripts.UI.ChatControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Assets.Scripts.UI"  
+             xmlns:converters="clr-namespace:Assets.Scripts.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="1200" d:DesignWidth="2560">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:InverseBoolToVisConverter x:Key="InverseBoolToVisConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      PanningMode="VerticalOnly"
+                      VerticalContentAlignment="Bottom">
+            <ItemsControl ItemsSource="{Binding Messages}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:ChatMessageView/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <TextBlock Margin="0" 
+                   Name="_placeholderText"
+                   Text="Ваше сообщение…" 
+                   Foreground="Gray"
+                   Grid.Row="1"
+                   FontSize="15"
+                   Background="{x:Null}" />
+        <TextBox Grid.Row="1"
+                 Name="_entryText"
+                 Text="{Binding CurrentMessage, UpdateSourceTrigger=PropertyChanged}"
+                 HorizontalAlignment="Stretch"
+                 Background="#7FD3D3D3"
+                 VerticalContentAlignment="Center"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 GotFocus="_sendButton_GotFocus"
+                 LostFocus="_sendButton_LostFocus"
+                 FontFamily="../../Fonts/#Roboto"
+                 FontSize="15"         
+                 AcceptsTab="True">
+        </TextBox>
+        <Button Grid.Column="1"
+                GotFocus="_sendButton_GotFocus"
+                LostFocus="_sendButton_LostFocus"
+                Background="#7FD3D3D3"
+                Grid.Row="1"
+                Style="{StaticResource TransparentButton}"
+                Command="{Binding SendMessageCommand}">
+            <Path Style="{StaticResource IconPath}"
+                  Stroke="Gray"
+                  Fill="Gray"
+                  Data="M2,21l21-9L2,3v7l15,2L2,14V21z"/>
+        </Button>
+    </Grid>
+</UserControl>

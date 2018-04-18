@@ -1,0 +1,125 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Assets.Scripts.UI"           
+             xmlns:converters="clr-namespace:Assets.Scripts.Converters"
+    x:Class="Assets.Scripts.UI.FurnitureView"
+             Background="White"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <!--<Grid.ColumnDefinitions>
+        <ColumnDefinition Width="20*"/>
+        <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>-->
+        <!--<ListBox ItemsSource="{Binding Materials}"
+                Visibility="{Binding IsFurnitureSelected, Converter={StaticResource BoolToVisConverter}}"
+                SelectedItem="{Binding SelectedMaterial, Mode=TwoWay}"
+                ItemsPanel="{DynamicResource MaterialsListBoxItemsPanel}" 
+                ItemTemplate="{DynamicResource MaterialsListBoxItem}"
+                Grid.Column="0"/>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0" Stretch="Uniform" HorizontalAlignment="Left">
+                <TextBlock Text="Выбор текстуры"
+                    FontSize="24"
+                           Padding="15"
+                    Foreground="Black"
+                    FontFamily="../../Fonts/#Roboto"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            </Viewbox>
+                <!--<Button HorizontalAlignment="Right" Grid.Column="1"
+                        Command="{Binding CloseCommand}"
+                Style="{StaticResource TransparentButton}">
+                    <Path Data="M17.093772,0.00010668486 C17.306161,0.0032852739 17.518813,0.07752356 17.693376,0.22583617 18.092376,0.56483606 18.140374,1.1628361 17.801376,1.5618359 17.769376,1.599836 17.734374,1.635836 17.696374,1.667836 L10.311568,9.0664227 17.665376,16.429836 C18.036374,16.799836 18.036374,17.399837 17.666375,17.770835 17.296375,18.141835 16.696374,18.141835 16.325376,17.771837 L8.9731867,10.4073 1.6183752,17.775836 C1.2473751,18.145835 0.64737512,18.145835 0.27737523,17.774837 -0.092624897,17.403836 -0.092624897,16.803836 0.27837516,16.433835 L7.6353676,9.0672343 0.24837501,1.667836 C-0.097624892,1.2748361 -0.059624894,0.67583603 0.33337505,0.32983611 0.69137509,0.013836052 1.2283751,0.013836052 1.5863751,0.32983611 L8.9738724,7.7269814 16.357375,0.33383606 C16.548063,0.10939856 16.820699,-0.0039803535 17.093772,0.00010668486 z" 
+                            Style="{StaticResource IconPath}"
+                          Fill="LightGray"
+                            StrokeThickness="2"/>
+                </Button>-->
+            <Viewbox Grid.Column="1"
+                         Grid.Row="0" 
+                         Margin="0">
+                <Button Width="400"
+                            Height="400"
+                            Style="{StaticResource TransparentButton}"
+                            Command="{Binding CloseCommand}" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Foreground="{x:Null}" Background="Transparent" BorderBrush="{x:Null}" Margin="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Path Data="M17.093772,0.00010668486 C17.306161,0.0032852739 17.518813,0.07752356 17.693376,0.22583617 18.092376,0.56483606 18.140374,1.1628361 17.801376,1.5618359 17.769376,1.599836 17.734374,1.635836 17.696374,1.667836 L10.311568,9.0664227 17.665376,16.429836 C18.036374,16.799836 18.036374,17.399837 17.666375,17.770835 17.296375,18.141835 16.696374,18.141835 16.325376,17.771837 L8.9731867,10.4073 1.6183752,17.775836 C1.2473751,18.145835 0.64737512,18.145835 0.27737523,17.774837 -0.092624897,17.403836 -0.092624897,16.803836 0.27837516,16.433835 L7.6353676,9.0672343 0.24837501,1.667836 C-0.097624892,1.2748361 -0.059624894,0.67583603 0.33337505,0.32983611 0.69137509,0.013836052 1.2283751,0.013836052 1.5863751,0.32983611 L8.9738724,7.7269814 16.357375,0.33383606 C16.548063,0.10939856 16.820699,-0.0039803535 17.093772,0.00010668486 z" Style="{StaticResource IconPath}"
+                                StrokeThickness="2" Margin="0" Stroke="{x:Null}" Fill="Black"/>
+                    </Grid>
+                </Button>
+            </Viewbox>
+        </Grid>
+        <Separator Grid.Row="1"
+                   Background="#7FD3D3D3"/>
+        <ScrollViewer Grid.Row="2"
+                      VerticalScrollBarVisibility="Auto">
+            <Viewbox Stretch="Uniform" VerticalAlignment="Top">
+                <Grid
+                      Margin="20,0,20,20" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                        <Label Content="Материал"
+                               Grid.Row="0"
+                               Padding="10,10,10,10"
+                               FontSize="20"
+                               Foreground="Black"
+                               HorizontalAlignment="Left"
+                               FontFamily="../../Fonts/#Roboto"
+                               Height="40"
+                               Width="800"
+                               VerticalAlignment="Bottom" 
+                               VerticalContentAlignment="Bottom"/>
+                        <ComboBox ItemsSource="{Binding Materials}" 
+                                  Visibility="{Binding IsFurnitureSelected, Converter={StaticResource BoolToVisConverter}}"
+                                  SelectedItem="{Binding SelectedMaterial, Mode=TwoWay}" 
+                                  FontSize="40"
+                                  FontFamily="../../Fonts/#Roboto"
+                                  DisplayMemberPath="Name"
+                                  Style="{StaticResource ComboBoxFlatStyle}"
+                                  Height="60"
+                             Grid.Row="1"
+                                  Width="800" VerticalContentAlignment="Center" Margin="0,20"/>
+                </Grid>
+            </Viewbox>
+
+        </ScrollViewer>
+        <Separator Grid.Row="3"
+                   Background="#7FD3D3D3"/>
+        <Button HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{StaticResource ResourceKey=YellowButton}"
+            Command="{Binding CloseCommand}" Margin="0" Grid.Row="4">
+            <Viewbox Margin="0">
+                <TextBlock TextWrapping="Wrap" Text="Применить" Margin="90,0" Foreground="#7F000000"/>
+            </Viewbox>
+        </Button>
+
+    </Grid> 
+</UserControl>

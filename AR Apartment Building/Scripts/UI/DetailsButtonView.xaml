@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Assets.Scripts.UI.DetailsButtonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Assets.Scripts.UI"           
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary Source="Styles.xaml"/>
+    </UserControl.Resources>
+    <Grid>
+        <Button Style="{StaticResource RoundButton}"
+                BorderThickness="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Path Style="{StaticResource IconPath}"
+                  Data="M19.087,8.3l-0.1-0.038l-0.409-1l0.044-0.1C19.857,4.3,19.771,4.212,19.566,4l-1.652-1.64
+	c-0.079-0.073-0.182-0.115-0.289-0.117c-0.093,0-0.374,0-2.814,1.128l-0.1,0.045L13.708,3l-0.041-0.1C12.52,0,12.4,0,12.117,0H9.784
+	C9.5,0,9.37,0,8.307,2.9l-0.04,0.106l-1,0.417l-0.1-0.04C6.25,2.932,5.289,2.574,4.3,2.316C4.193,2.318,4.09,2.359,4.011,2.431
+	L2.361,4.08c-0.21,0.211-0.3,0.3,1.006,3.106l0.048,0.1l-0.41,0.995l-0.1,0.04C0,9.471,0,9.583,0,9.881v2.333
+	c0,0.3,0,0.424,2.913,1.489l0.1,0.038l0.41,0.992l-0.044,0.1c-1.238,2.867-1.16,2.945-0.949,3.159l1.652,1.648
+	c0.08,0.072,0.183,0.114,0.291,0.116c0.092,0,0.373,0,2.814-1.127l0.1-0.047L8.292,19l0.039,0.1C9.478,22,9.6,22,9.882,22h2.334
+	c0.293,0,0.414,0,1.479-2.906l0.04-0.106l1-0.414l0.1,0.04c0.916,0.453,1.876,0.812,2.865,1.071c0.108-0.001,0.211-0.042,0.29-0.115
+	l1.656-1.653c0.208-0.212,0.295-0.3-1.011-3.1l-0.049-0.105l0.409-0.99l0.1-0.039C22,12.528,22,12.415,22,12.116V9.785
+	C22,9.485,22,9.361,19.087,8.3z M11,15c-2.209,0-4-1.791-4-4s1.791-4,4-4s4,1.791,4,4C14.997,13.208,13.208,14.997,11,15z"
+                      Fill="White"
+                      Grid.Column="1"
+                      Grid.Row="1"/>
+            </Grid>
+        </Button>
+    </Grid>
+</UserControl>

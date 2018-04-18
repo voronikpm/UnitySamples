@@ -1,0 +1,850 @@
+﻿<UserControl x:Class="Assets.Scripts.UI.OverlayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Assets.Scripts.UI"
+             xmlns:enums="clr-namespace:Assets.Scripts.Enums"
+             xmlns:converters="clr-namespace:Assets.Scripts.Converters"
+             xmlns:viewModels="clr-namespace:Assets.Scripts.ViewModels"
+             mc:Ignorable="d" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="1600" d:DesignWidth="2560">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:EqualityVisibilityConverter x:Key="EqualityVisibilityConverter"/>
+            <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+            <converters:InverseBoolToVisConverter x:Key="InverseBoolToVisConverter"/>
+            <DataTemplate DataType="{x:Type viewModels:HouseViewModel}">
+                <local:HouseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:ApartmentViewModel}">
+                <local:ApartmentView/>
+            </DataTemplate>
+            <sys:Int32 x:Key="I0">0</sys:Int32>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ContentControl Content="{Binding CurrentViewModel}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Visibility="{Binding IsContentShown, Converter={StaticResource BoolToVisConverter}}"
+                        Grid.ColumnSpan="3"
+                        Grid.RowSpan="2"/>
+        <Grid Grid.ColumnSpan="3"
+              Grid.RowSpan="2"
+              Visibility="{Binding IsSuggestionShown, Converter={StaticResource BoolToVisConverter}}" d:IsHidden="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="229*"/>
+                <RowDefinition Height="229*"/>
+                <RowDefinition Height="70*"/>
+                <RowDefinition Height="522*"/>
+                <RowDefinition Height="138*"/>
+                <RowDefinition Height="210*"/>
+                <RowDefinition Height="202*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="0" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Stretch="Uniform" Margin="0" Grid.Column="1">
+                    <!--<StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center" Height="43.316">
+                        <TextBlock Text="Добро пожаловать! Чтобы появился макет, наведите прицел на желаемое изображение."
+                               HorizontalAlignment="Center"
+                       FontFamily="../../Fonts/#Roboto"
+                               Foreground="White"/>
+                        <TextBlock Text="Когда прицел станет зеленым нажмите кнопку 'Создать метку'"
+                               HorizontalAlignment="Center"
+                       FontFamily="../../Fonts/#Roboto"
+                               Foreground="White" Margin="0,7,0,0"/>
+                    </StackPanel>-->
+                    <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center" Height="43.316">
+                        <TextBlock Text="Добро пожаловать! Чтобы появился макет, наведите прицел на метку."
+                               HorizontalAlignment="Center"
+                       FontFamily="../../Fonts/#Roboto"
+                               Foreground="White"/>
+                    </StackPanel>
+                </Viewbox>
+            </Grid>
+            <!--<Grid Margin="0" Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="35*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox
+                     Stretch="Uniform" Margin="0" Grid.Column="1">
+                    <Button Content="   Создать метку   "
+                    FontFamily="../../Fonts/#Roboto"
+                        Style="{StaticResource RoundedButton}"
+                    Command="{Binding ScanCommand}" Height="34.071" Margin="0"/>
+                </Viewbox>
+            </Grid>-->
+            <Grid Margin="0" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="35*"/>
+                    <ColumnDefinition Width="50
+                                      *"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Stretch="Uniform"
+                     HorizontalAlignment="Center"
+                     Margin="0" Width="571" Grid.Column="1">
+                    <Grid HorizontalAlignment="Center"
+                  Width="500"
+                  Height="500">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Path Data="M238.042,401.875 L238.042,365.042 L275,365.042"
+                          Visibility="{Binding IsWhiteAimVisible, Converter={StaticResource BoolToVisConverter}}"  Fill="Transparent" Stretch="Uniform" Stroke="White" StrokeThickness="5" StrokeMiterLimit="10" 
+                      Grid.Column="0"
+                      Grid.Row="0"/>
+                        <Path Data="M274.875,473.042 L238.042,473.042 L238.042,436.083" 
+                          Visibility="{Binding IsWhiteAimVisible, Converter={StaticResource BoolToVisConverter}}" Fill="Transparent" Stretch="Uniform" Stroke="White" StrokeThickness="5" StrokeMiterLimit="10" 
+                      Grid.Column="0"
+                      Grid.Row="2"/>
+                        <Path Data="M346,436.167 L346,473 L309.042,473"
+                          Visibility="{Binding IsWhiteAimVisible, Converter={StaticResource BoolToVisConverter}}" Fill="Transparent" Stretch="Uniform" Stroke="White" StrokeThickness="5" StrokeMiterLimit="10" 
+                      Grid.Column="2"
+                      Grid.Row="2"/>
+                        <Path Data="M309.167,365 L346,365 L346,401.958" 
+                          Visibility="{Binding IsWhiteAimVisible, Converter={StaticResource BoolToVisConverter}}" Fill="Transparent" Stretch="Uniform" Stroke="White" StrokeThickness="5" StrokeMiterLimit="10" 
+                      Grid.Column="2"
+                      Grid.Row="0"/>
+                        <Path Data="M83.333336,1.5 L83.333336,165.16667 M1.5000025,83.333379 L165.16667,83.333379"
+                          Visibility="{Binding IsWhiteAimVisible, Converter={StaticResource BoolToVisConverter}}" Fill="Transparent" Stretch="Fill" Stroke="White" StrokeThickness="5" StrokeMiterLimit="10"
+                      Grid.Row="1" Margin="0" Grid.Column="1"/>
+
+                        <Path Data="M238.042,401.875 L238.042,365.042 L275,365.042"
+                          Visibility="{Binding IsGreenAimVisible, Converter={StaticResource BoolToVisConverter}}" Fill="Transparent" Stretch="Uniform" Stroke="Green" StrokeThickness="5" StrokeMiterLimit="10" 
+                      Grid.Column="0"
+                      Grid.Row="0"/>
+                        <Path Data="M274.875,473.042 L238.042,473.042 L238.042,436.083"
+                          Visibility="{Binding IsGreenAimVisible, Converter={StaticResource BoolToVisConverter}}" Fill="Transparent" Stretch="Uniform" Stroke="Green" StrokeThickness="5" StrokeMiterLimit="10" 
+                      Grid.Column="0"
+                      Grid.Row="2"/>
+                        <Path Data="M346,436.167 L346,473 L309.042,473" Fill="Transparent"
+                          Visibility="{Binding IsGreenAimVisible, Converter={StaticResource BoolToVisConverter}}" Stretch="Uniform" Stroke="Green" StrokeThickness="5" StrokeMiterLimit="10" 
+                      Grid.Column="2"
+                      Grid.Row="2"/>
+                        <Path Data="M309.167,365 L346,365 L346,401.958" Fill="Transparent"
+                          Visibility="{Binding IsGreenAimVisible, Converter={StaticResource BoolToVisConverter}}" Stretch="Uniform" Stroke="Green" StrokeThickness="5" StrokeMiterLimit="10" 
+                      Grid.Column="2"
+                      Grid.Row="0"/>
+                        <Path Data="M83.333336,1.5 L83.333336,165.16667 M1.5000025,83.333379 L165.16667,83.333379"
+                          Visibility="{Binding IsGreenAimVisible, Converter={StaticResource BoolToVisConverter}}" Fill="Transparent" Stretch="Fill" Stroke="Green" StrokeThickness="5" StrokeMiterLimit="10"
+                      Grid.Row="1" Margin="0" Grid.Column="1"/>
+                    </Grid>
+                </Viewbox>
+            </Grid>
+        </Grid>
+        <Grid Grid.ColumnSpan="3"
+              Grid.RowSpan="2"
+              Visibility="{Binding IsBuildingInfoShown, Converter={StaticResource BoolToVisConverter}}" d:IsHidden="True">
+            <Button Style="{StaticResource TransparentButton}"
+                    Command="{Binding HideInfoCommand}">
+                <Canvas>
+                    <Path Data="M17.093772,0.00010668486 C17.306161,0.0032852739 17.518813,0.07752356 17.693376,0.22583617 18.092376,0.56483606 18.140374,1.1628361 17.801376,1.5618359 17.769376,1.599836 17.734374,1.635836 17.696374,1.667836 L10.311568,9.0664227 17.665376,16.429836 C18.036374,16.799836 18.036374,17.399837 17.666375,17.770835 17.296375,18.141835 16.696374,18.141835 16.325376,17.771837 L8.9731867,10.4073 1.6183752,17.775836 C1.2473751,18.145835 0.64737512,18.145835 0.27737523,17.774837 -0.092624897,17.403836 -0.092624897,16.803836 0.27837516,16.433835 L7.6353676,9.0672343 0.24837501,1.667836 C-0.097624892,1.2748361 -0.059624894,0.67583603 0.33337505,0.32983611 0.69137509,0.013836052 1.2283751,0.013836052 1.5863751,0.32983611 L8.9738724,7.7269814 16.357375,0.33383606 C16.548063,0.10939856 16.820699,-0.0039803535 17.093772,0.00010668486 z" Style="{StaticResource IconPath}"
+                          StrokeThickness="2"/>
+                </Canvas>
+            </Button>
+        </Grid>
+
+        <Grid Grid.ColumnSpan="3"
+              Grid.RowSpan="2"
+              Visibility="{Binding IsApartmentInfoShown, Converter={StaticResource BoolToVisConverter}}" d:IsHidden="True">
+            <Button Style="{StaticResource TransparentButton}"
+                    Command="{Binding HideInfoCommand}">
+                <Canvas>
+                    <Path Data="M17.093772,0.00010668486 C17.306161,0.0032852739 17.518813,0.07752356 17.693376,0.22583617 18.092376,0.56483606 18.140374,1.1628361 17.801376,1.5618359 17.769376,1.599836 17.734374,1.635836 17.696374,1.667836 L10.311568,9.0664227 17.665376,16.429836 C18.036374,16.799836 18.036374,17.399837 17.666375,17.770835 17.296375,18.141835 16.696374,18.141835 16.325376,17.771837 L8.9731867,10.4073 1.6183752,17.775836 C1.2473751,18.145835 0.64737512,18.145835 0.27737523,17.774837 -0.092624897,17.403836 -0.092624897,16.803836 0.27837516,16.433835 L7.6353676,9.0672343 0.24837501,1.667836 C-0.097624892,1.2748361 -0.059624894,0.67583603 0.33337505,0.32983611 0.69137509,0.013836052 1.2283751,0.013836052 1.5863751,0.32983611 L8.9738724,7.7269814 16.357375,0.33383606 C16.548063,0.10939856 16.820699,-0.0039803535 17.093772,0.00010668486 z" Style="{StaticResource IconPath}"
+                          StrokeThickness="2"/>
+                </Canvas>
+            </Button>
+        </Grid>
+
+        <Viewbox Grid.ColumnSpan="3"
+              Grid.RowSpan="2"
+                 Stretch="Uniform"
+              Visibility="{Binding IsTutorialShown, Converter={StaticResource BoolToVisConverter}}" d:IsHidden="True">
+            <Grid Width="2560"
+                  Height="1600">
+                <Grid.Resources>
+                    <sys:Int32 x:Key="I0">0</sys:Int32>
+                    <sys:Int32 x:Key="I1">1</sys:Int32>
+                    <sys:Int32 x:Key="I2">2</sys:Int32>
+                    <sys:Int32 x:Key="I3">3</sys:Int32>
+                </Grid.Resources>
+                <Grid Visibility="{Binding TutorialStage, Converter={StaticResource EqualityVisibilityConverter}, ConverterParameter={StaticResource I0}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="102*"/>
+                        <RowDefinition Height="96*"/>
+                        <RowDefinition Height="215*"/>
+                        <RowDefinition Height="217*"/>
+                        <RowDefinition Height="42*"/>
+                        <RowDefinition Height="144*"/>
+                        <RowDefinition Height="138*"/>
+                        <RowDefinition Height="180*"/>
+                        <RowDefinition Height="246*"/>
+                        <RowDefinition Height="148*"/>
+                        <RowDefinition Height="72*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Обучение: 1/4"
+                           Grid.Row="3"
+                           HorizontalAlignment="Center"
+                           FontSize="140"
+                           Foreground="White"
+                           FontFamily="../../Fonts/#Roboto" Margin="821.89,0" VerticalContentAlignment="Center" Width="916.22"/>
+                    <Button Style="{StaticResource TransparentButton}"
+                        Grid.Row="9"
+                        FontFamily="../../Fonts/#Roboto"
+                        FontSize="80"
+                        Command="{Binding EndTutorialCommand}"
+                        Content="Пропустить обучение" FontWeight="Bold" BorderBrush="#00707070"/>
+                    <Grid Margin="0" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Fill="White" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" />
+                            <Ellipse Fill="#7FFFFFFF" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="1" />
+                            <Ellipse Fill="#7FFFFFFF" Stroke="#00000000" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="2" />
+                            <Ellipse Fill="#7FFFFFFF" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="4" />
+                        </Grid>
+                    </Grid>
+                    <Grid Margin="0" Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Stretch="Uniform" Margin="0" Grid.Column="1">
+                            <StackPanel Orientation="Vertical"
+                            HorizontalAlignment="Center">
+                                <TextBlock Text="Отлично! Вы создали метку."
+                               HorizontalAlignment="Center"
+                       FontFamily="../../Fonts/#Roboto"
+                               Foreground="White" FontSize="8"/>
+                                <TextBlock Text="Теперь макет привязан к ней в пространстве"
+                               HorizontalAlignment="Center"
+                       FontFamily="../../Fonts/#Roboto"
+                               Foreground="White" FontSize="8"/>
+                            </StackPanel>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Margin="0" Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*"/>
+                            <ColumnDefinition Width="18*"/>
+                            <ColumnDefinition Width="28*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource RoundedButton}"
+                        Command="{Binding NextTutorialStageCommand}"
+                        Content="Дальше"
+                        FontFamily="../../Fonts/#Roboto"
+                        FontSize="80"
+                        Margin="0" Grid.Column="1" FontWeight="Bold"/>
+                    </Grid>
+                </Grid>
+                <Grid Visibility="{Binding TutorialStage, ConverterParameter={StaticResource I1}, Converter={StaticResource EqualityVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="51*"/>
+                        <RowDefinition Height="48*"/>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="96*"/>
+                        <RowDefinition Height="0*"/>
+                        <RowDefinition Height="58*"/>
+                        <RowDefinition Height="282*"/>
+                        <RowDefinition Height="94*"/>
+                        <RowDefinition Height="52*"/>
+                        <RowDefinition Height="74*"/>
+                        <RowDefinition Height="36*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Обучение: 2/4"
+                        Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        FontSize="140"
+                        Foreground="White"
+                        FontFamily="../../Fonts/#Roboto" Margin="821.89,0" VerticalContentAlignment="Center" Width="916.22"/>
+                    <Button Style="{StaticResource TransparentButton}"
+                        Grid.Row="9"
+                        FontFamily="../../Fonts/#Roboto"
+                        FontSize="80"
+                        Command="{Binding EndTutorialCommand}"
+                        Content="Пропустить обучение" FontWeight="Bold" BorderBrush="#00707070"/>
+                    <Grid Margin="0" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Fill="#7FFFFFFF" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" />
+                            <Ellipse Fill="White" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="1" />
+                            <Ellipse Fill="#7FFFFFFF" Stroke="#00000000" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="2" />
+                            <Ellipse Fill="#7FFFFFFF" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="4" />
+                        </Grid>
+                    </Grid>
+                    <Grid Margin="0" Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Stretch="Uniform" Margin="0" Grid.Column="1">
+                            <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                                <TextBlock Text="Вы можете масштабировать макет"
+                                    HorizontalAlignment="Center"
+                                    FontFamily="../../Fonts/#Roboto"
+                                    Foreground="White" FontSize="8"/>
+                                <TextBlock Text="при помощи пальцев."
+                                    HorizontalAlignment="Center"
+                                    FontFamily="../../Fonts/#Roboto"
+                                    Foreground="White" FontSize="8"/>
+                            </StackPanel>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Margin="0" Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*"/>
+                            <ColumnDefinition Width="18*"/>
+                            <ColumnDefinition Width="28*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource RoundedButton}"
+                            Command="{Binding NextTutorialStageCommand}"
+                            Content="Дальше"
+                            FontFamily="../../Fonts/#Roboto"
+                            FontSize="80"
+                            Margin="0" Grid.Column="1" FontWeight="Bold"/>
+                    </Grid>
+                    <Grid Margin="0,10" Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="248*"/>
+                            <ColumnDefinition Width="127*"/>
+                            <ColumnDefinition Width="265*"/>
+                        </Grid.ColumnDefinitions>
+                        <Path Data="M19.562,0c0.833-0.154,1.679,0.196,2.161,0.893c0.254,0.851,0.326,1.746,0.211,2.626v6.094h0.053c0.3-0.365,0.635-0.7,1-1
+	c0.817-0.814,1.66-1.6,2.477-2.416l2.478-2.469c0.458-0.507,0.951-0.981,1.476-1.418L31,0.683c0.869-0.538,1.99-0.43,2.741,0.263
+	c1.311,1.748-0.491,3.01-1.371,3.887l-7.907,7.932h7.8c0.121,0.028,0.245,0.046,0.369,0.053c0.434,0.129,0.819,0.385,1.107,0.735
+	c0.603,0.963,0.311,2.233-0.652,2.836c-0.029,0.018-0.058,0.035-0.087,0.052c-0.859,0.377-2.557,0.158-3.69,0.158h-6.586
+	c-1.018,0.095-2.043,0.077-3.057-0.053c-1.9-0.582-1.529-2.4-1.529-4.78V4.412c-0.11-1.085-0.075-2.181,0.105-3.257
+	c0.172-0.382,0.446-0.709,0.792-0.945C19.2,0.111,19.417,0.11,19.562,0z M57.094,20.749c2.265-0.066,4.495,0.576,6.378,1.838
+	c0.512,0.342,1.74,1.762,2.267,1.786c0.897-0.213,1.825-0.266,2.741-0.158c2.292,0.1,4.484,0.969,6.22,2.469
+	c0.492,0.37,1.389,1.819,2,1.838c0.309,0.091,0.627,0.144,0.949,0.157c0.807,0.189,1.6,0.434,2.372,0.735
+	c2.281,0.979,4.211,2.627,5.535,4.727c0.865,1.51,1.505,3.138,1.9,4.833l0.211,1.526c0.374,1.833,0.427,3.717,0.158,5.568
+	l-0.105,1.365c-0.282,1.183-0.373,2.4-0.738,3.519c-1.088,3.58-2.592,7.019-4.482,10.248c-0.582,0.949-1.136,1.934-1.74,2.889
+	c-0.378,0.459-0.713,0.951-1,1.471l-0.474,3.835c-0.349,1.5-0.338,3.221-0.685,4.728c-0.128,0.554-0.051,1.032-0.211,1.523
+	c-0.68,2.261-2.575,3.947-4.9,4.36H47.394c-0.972-0.207-1.888-0.619-2.688-1.208c-0.334-0.2-0.637-0.448-0.9-0.735
+	c-0.828-1.27-1.551-2.605-2.161-3.992c-1.275-2.446-2.48-5.023-3.9-7.354c-0.933-1.531-1.665-3.576-3.057-4.622
+	c-1.05-0.79-2.172-1.509-3.321-2.206c-0.593-0.359-1.247-0.531-1.845-0.893c-0.424-0.272-0.864-0.517-1.318-0.735
+	c-1.759-0.745-3.467-1.605-5.113-2.574c-1.041-0.631-2.1-1.1-3.11-1.733c-0.5-0.312-0.914-0.761-1.37-1.1
+	c-0.352-0.242-0.67-0.529-0.947-0.854c-0.891-1.079-1.587-2.305-2.056-3.624c-0.443-1.601-0.424-3.294,0.053-4.885
+	c0.135-0.37,0.163-0.7,0.316-1.051c0.888-2.036,2.505-3.666,4.533-4.57c0.684-0.269,1.39-0.479,2.109-0.63
+	c1.154-0.213,2.339-0.179,3.479,0.1c1.932,0.551,3.818,1.253,5.64,2.1c1.1,0.475,2.167,0.829,3.215,1.366
+	c0.807,0.413,1.657,0.783,2.477,1.208c0.371,0.293,0.806,0.493,1.27,0.586c0.159-0.08,0.288-0.209,0.369-0.368
+	c0.164-0.865,0.199-1.75,0.105-2.626V13.972c0-3.732-0.256-7.3,1.16-9.613C41.709,2.106,43.42,1,46.34,0.263
+	c1.072-0.249,2.182-0.284,3.268-0.105c0.626,0.11,1.243,0.268,1.845,0.472c1.867,0.736,3.442,2.065,4.481,3.782
+	c1.118,1.831,1.16,4.347,1.16,7.354L57.094,20.749L57.094,20.749z M47.394,3.888c-0.3,0.187-1.155,0.259-1.529,0.42
+	c-1.094,0.475-1.975,1.335-2.478,2.416c-0.401,1.38-0.544,2.823-0.422,4.255v29.573c0.087,1.006-0.002,2.019-0.263,2.994
+	c-0.71,1.726-3.068,3.686-5.693,2.574c-0.775-0.329-1.5-0.871-2.267-1.208c-2.189-0.961-4.325-1.885-6.589-2.837
+	c-0.825-0.379-1.669-0.713-2.53-1c-3.257-0.97-5.8,1.514-6.431,3.782c-0.396,1.924,0.342,3.904,1.9,5.1
+	c4.071,3.045,9.367,4.808,13.758,7.564c1.437,0.846,2.722,1.928,3.8,3.2c0.671,0.9,1.137,1.905,1.74,2.889
+	c1.167,1.9,2.219,3.983,3.268,5.988c0.744,1.423,1.428,2.848,2.161,4.255c0.244,0.751,0.659,1.436,1.212,2
+	c0.986,0.707,4.767,0.42,6.536,0.42h17.654c0.668,0.063,1.342,0.028,2-0.105c1.3-0.466,1.357-1.359,1.687-2.784
+	c0.017-0.28,0.035-0.56,0.053-0.841c0.473-2.015,0.425-4.285,0.9-6.3c0.031-0.804,0.173-1.599,0.422-2.364
+	c0.433-0.707,0.979-1.4,1.423-2.1c1.583-2.484,2.975-5.084,4.163-7.779c0.793-1.942,1.428-3.944,1.9-5.988l0.316-2.259v-0.737
+	c0.184-1.259,0.13-2.542-0.158-3.782c-0.2-0.851-0.17-1.6-0.422-2.364c-0.638-2.315-2.126-4.304-4.166-5.57
+	c-0.946-0.479-1.956-0.816-3-1c-0.699-0.026-1.391-0.15-2.056-0.368c-0.572-0.491-1.056-1.077-1.428-1.732
+	c-0.841-0.956-1.939-1.651-3.163-2c-1.05-0.269-2.144-0.323-3.215-0.158c-0.808,0.308-1.69,0.363-2.53,0.158
+	c-0.571-0.324-1.045-0.796-1.37-1.366c-0.466-0.542-1.018-1.004-1.634-1.366c-0.858-0.446-1.785-0.748-2.741-0.893h-0.845
+	c-1.308,0-2.123,0.273-3-0.315c-0.216-0.106-0.412-0.248-0.58-0.42c-0.781-1.069-0.475-3.671-0.474-5.463v-7.2
+	c0.126-1.522-0.034-3.054-0.474-4.517C52,4.791,50.167,3.877,47.394,3.887V3.888z M2.008,19.015h9.647c1.626,0,3.189-0.178,3.8,0.84
+	c0.42,0.707,0.211,2.888,0.211,3.992v7.669c0,2.218,0.271,3.7-1.581,4.15c-0.732,0.121-1.469-0.185-1.9-0.788
+	c-0.334-0.869-0.443-1.809-0.316-2.731v-6.093h-0.056c-0.237,0.289-0.502,0.553-0.791,0.788l-1.845,1.891l-0.9,0.84
+	c-1.028,1.195-2.136,2.318-3.317,3.362l-1.845,1.944c-0.859,0.613-2.043,0.477-2.741-0.315c-1.059-1.468,0.393-2.7,1.107-3.414
+	L9.81,22.9v-0.05H1.744c-0.307-0.2-0.674-0.216-0.949-0.42c-0.697-0.7-0.827-1.785-0.316-2.63c0.287-0.351,0.673-0.607,1.107-0.735
+	C1.728,19.061,1.869,19.044,2.008,19.015z" Fill="Transparent" Stretch="Uniform" Stroke="White" StrokeThickness="5" StrokeMiterLimit="10" 
+                            Margin="0,10,0,30" Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+                <Grid Visibility="{Binding TutorialStage, ConverterParameter={StaticResource I2}, Converter={StaticResource EqualityVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="102*"/>
+                        <RowDefinition Height="96*"/>
+                        <RowDefinition Height="215*"/>
+                        <RowDefinition Height="217*"/>
+                        <RowDefinition Height="42*"/>
+                        <RowDefinition Height="144*"/>
+                        <RowDefinition Height="138*"/>
+                        <RowDefinition Height="180*"/>
+                        <RowDefinition Height="246*"/>
+                        <RowDefinition Height="148*"/>
+                        <RowDefinition Height="72*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Обучение: 3/4"
+                        Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        FontSize="140"
+                        Foreground="White"
+                        FontFamily="../../Fonts/#Roboto" Margin="821.89,0" VerticalContentAlignment="Center" Width="916.22"/>
+                    <Button Style="{StaticResource TransparentButton}"
+                        Grid.Row="9"
+                        FontFamily="../../Fonts/#Roboto"
+                        FontSize="80"
+                        Command="{Binding EndTutorialCommand}"
+                        Content="Пропустить обучение" FontWeight="Bold" BorderBrush="#00707070"/>
+                    <Grid Margin="0" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Fill="#7FFFFFFF" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" />
+                            <Ellipse Fill="#7FFFFFFF" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="1" />
+                            <Ellipse Fill="White" Stroke="#00000000" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="2" />
+                            <Ellipse Fill="#7FFFFFFF" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="4" />
+                        </Grid>
+                    </Grid>
+                    <Grid Margin="0" Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Stretch="Uniform" Margin="0" Grid.Column="1">
+                            <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                                <TextBlock Text="При помощи кнокок в левой части экрана."
+                                    HorizontalAlignment="Center"
+                                    FontFamily="../../Fonts/#Roboto"
+                                    Foreground="White" FontSize="8"/>
+                                <TextBlock Text="вы можете переключаться между этажами здания и переходлить на общий вид.."
+                                    HorizontalAlignment="Center"
+                                    FontFamily="../../Fonts/#Roboto"
+                                    Foreground="White" FontSize="8"/>
+                            </StackPanel>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Margin="0" Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*"/>
+                            <ColumnDefinition Width="18*"/>
+                            <ColumnDefinition Width="28*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource RoundedButton}"
+                            Command="{Binding NextTutorialStageCommand}"
+                            Content="Дальше"
+                            FontFamily="../../Fonts/#Roboto"
+                            FontSize="80"
+                            Margin="0" Grid.Column="1" FontWeight="Bold"/>
+                    </Grid>
+                    <Grid Grid.RowSpan="11">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Data="M444.3,121.3 L292.7,121.3 292.7,9.9 C292.7,4.4 288.3,0 282.8,0 L9.9000008,0 C4.4000008,0 7.6293945E-07,4.4 7.6293945E-07,9.9 L7.6293945E-07,479.9 C7.6293945E-07,485.4 4.4000008,489.8 9.9000008,489.8 L282.8,489.8 444.3,489.8 C449.8,489.8 454.2,485.4 454.2,479.9 L454.2,131.2 C454.2,125.7 449.8,121.3 444.3,121.3 z M272.9,131.2 L272.9,470.1 19.800001,470.1 19.800001,19.8 272.9,19.8 272.9,131.2 272.9,131.2 z M434.4,470 L292.7,470 292.7,141 434.4,141 434.4,470 z M331.3,191.3 L395.8,191.3 C401.3,191.3 405.7,186.9 405.7,181.4 405.7,175.9 401.3,171.5 395.8,171.5 L331.3,171.5 C325.8,171.5 321.4,175.9 321.4,181.4 321.4,186.8 325.8,191.3 331.3,191.3 z M331.3,241 L395.8,241 C401.3,241 405.7,236.6 405.7,231.1 405.7,225.6 401.3,221.2 395.8,221.2 L331.3,221.2 C325.8,221.2 321.4,225.6 321.4,231.1 321.4,236.6 325.8,241 331.3,241 z M331.3,290.6 L395.8,290.6 C401.3,290.6 405.7,286.2 405.7,280.7 405.7,275.2 401.3,270.8 395.8,270.8 L331.3,270.8 C325.8,270.8 321.4,275.2 321.4,280.7 321.4,286.2 325.8,290.6 331.3,290.6 z M331.3,340.3 L395.8,340.3 C401.3,340.3 405.7,335.9 405.7,330.4 405.7,324.9 401.3,320.5 395.8,320.5 L331.3,320.5 C325.8,320.5 321.4,324.9 321.4,330.4 321.4,335.9 325.8,340.3 331.3,340.3 z M331.3,389.9 L395.8,389.9 C401.3,389.9 405.7,385.5 405.7,380 405.7,374.5 401.3,370.1 395.8,370.1 L331.3,370.1 C325.8,370.1 321.4,374.5 321.4,380 321.4,385.4 325.8,389.9 331.3,389.9 z M331.3,439.6 L395.8,439.6 C401.3,439.6 405.7,435.2 405.7,429.7 405.7,424.2 401.3,419.8 395.8,419.8 L331.3,419.8 C325.8,419.8 321.4,424.2 321.4,429.7 321.4,435.2 325.8,439.6 331.3,439.6 z M65.700001,97 C71.200001,97 75.600001,92.6 75.600001,87.1 L75.600001,65.2 C75.600001,59.7 71.200001,55.3 65.700001,55.3 60.200001,55.3 55.800001,59.7 55.800001,65.2 L55.800001,87.1 C55.800001,92.6 60.200001,97 65.700001,97 z M119.5,97 C125,97 129.4,92.6 129.4,87.1 L129.4,65.2 C129.4,59.7 125,55.3 119.5,55.3 114,55.3 109.6,59.7 109.6,65.2 L109.6,87.1 C109.6,92.6 114,97 119.5,97 z M173.2,97 C178.7,97 183.1,92.6 183.1,87.1 L183.1,65.2 C183.1,59.7 178.7,55.3 173.2,55.3 167.7,55.3 163.3,59.7 163.3,65.2 L163.3,87.1 C163.3,92.6 167.8,97 173.2,97 z M227,97 C232.5,97 236.9,92.6 236.9,87.1 L236.9,65.2 C236.9,59.7 232.5,55.3 227,55.3 221.5,55.3 217.1,59.7 217.1,65.2 L217.1,87.1 C217.1,92.6 221.5,97 227,97 z M65.700001,164.8 C71.200001,164.8 75.600001,160.4 75.600001,154.9 L75.600001,132.9 C75.600001,127.4 71.200001,123 65.700001,123 60.200001,123 55.800001,127.4 55.800001,132.9 L55.800001,154.9 C55.800001,160.3 60.200001,164.8 65.700001,164.8 z M119.5,164.8 C125,164.8 129.4,160.4 129.4,154.9 L129.4,132.9 C129.4,127.4 125,123 119.5,123 114,123 109.6,127.4 109.6,132.9 L109.6,154.9 C109.6,160.3 114,164.8 119.5,164.8 z M173.2,164.8 C178.7,164.8 183.1,160.4 183.1,154.9 L183.1,132.9 C183.1,127.4 178.7,123 173.2,123 167.7,123 163.3,127.4 163.3,132.9 L163.3,154.9 C163.3,160.3 167.8,164.8 173.2,164.8 z M227,164.8 C232.5,164.8 236.9,160.4 236.9,154.9 L236.9,132.9 C236.9,127.4 232.5,123 227,123 221.5,123 217.1,127.4 217.1,132.9 L217.1,154.9 C217.1,160.3 221.5,164.8 227,164.8 z M65.700001,232.5 C71.200001,232.5 75.600001,228.1 75.600001,222.6 L75.600001,200.7 C75.600001,195.2 71.200001,190.8 65.700001,190.8 60.200001,190.8 55.800001,195.2 55.800001,200.7 L55.800001,222.6 C55.800001,228.1 60.200001,232.5 65.700001,232.5 z M119.5,232.5 C125,232.5 129.4,228.1 129.4,222.6 L129.4,200.7 C129.4,195.2 125,190.8 119.5,190.8 114,190.8 109.6,195.2 109.6,200.7 L109.6,222.6 C109.6,228.1 114,232.5 119.5,232.5 z M173.2,232.5 C178.7,232.5 183.1,228.1 183.1,222.6 L183.1,200.7 C183.1,195.2 178.7,190.8 173.2,190.8 167.7,190.8 163.3,195.2 163.3,200.7 L163.3,222.6 C163.3,228.1 167.8,232.5 173.2,232.5 z M227,232.5 C232.5,232.5 236.9,228.1 236.9,222.6 L236.9,200.7 C236.9,195.2 232.5,190.8 227,190.8 221.5,190.8 217.1,195.2 217.1,200.7 L217.1,222.6 C217.1,228.1 221.5,232.5 227,232.5 z M65.700001,300.3 C71.200001,300.3 75.600001,295.9 75.600001,290.4 L75.600001,268.5 C75.600001,263 71.200001,258.6 65.700001,258.6 60.200001,258.6 55.800001,263 55.800001,268.5 L55.800001,290.4 C55.800001,295.8 60.200001,300.3 65.700001,300.3 z M119.5,300.3 C125,300.3 129.4,295.9 129.4,290.4 L129.4,268.5 C129.4,263 125,258.6 119.5,258.6 114,258.6 109.6,263 109.6,268.5 L109.6,290.4 C109.6,295.8 114,300.3 119.5,300.3 z M173.2,300.3 C178.7,300.3 183.1,295.9 183.1,290.4 L183.1,268.5 C183.1,263 178.7,258.6 173.2,258.6 167.7,258.6 163.3,263 163.3,268.5 L163.3,290.4 C163.3,295.8 167.8,300.3 173.2,300.3 z M227,300.3 C232.5,300.3 236.9,295.9 236.9,290.4 L236.9,268.5 C236.9,263 232.5,258.6 227,258.6 221.5,258.6 217.1,263 217.1,268.5 L217.1,290.4 C217.1,295.8 221.5,300.3 227,300.3 z M65.700001,368 C71.200001,368 75.600001,363.6 75.600001,358.1 L75.600001,336.2 C75.600001,330.7 71.200001,326.3 65.700001,326.3 60.200001,326.3 55.800001,330.7 55.800001,336.2 L55.800001,358.1 C55.800001,363.6 60.200001,368 65.700001,368 z M119.5,368 C125,368 129.4,363.6 129.4,358.1 L129.4,336.2 C129.4,330.7 125,326.3 119.5,326.3 114,326.3 109.6,330.7 109.6,336.2 L109.6,358.1 C109.6,363.6 114,368 119.5,368 z M173.2,368 C178.7,368 183.1,363.6 183.1,358.1 L183.1,336.2 C183.1,330.7 178.7,326.3 173.2,326.3 167.7,326.3 163.3,330.7 163.3,336.2 L163.3,358.1 C163.3,363.6 167.8,368 173.2,368 z M227,368 C232.5,368 236.9,363.6 236.9,358.1 L236.9,336.2 C236.9,330.7 232.5,326.3 227,326.3 221.5,326.3 217.1,330.7 217.1,336.2 L217.1,358.1 C217.1,363.6 221.5,368 227,368 z M65.700001,435.8 C71.200001,435.8 75.600001,431.4 75.600001,425.9 L75.600001,403.9 C75.600001,398.4 71.200001,394 65.700001,394 60.200001,394 55.800001,398.4 55.800001,403.9 L55.800001,425.9 C55.800001,431.3 60.200001,435.8 65.700001,435.8 z M119.5,435.8 C125,435.8 129.4,431.4 129.4,425.9 L129.4,403.9 C129.4,398.4 125,394 119.5,394 114,394 109.6,398.4 109.6,403.9 L109.6,425.9 C109.6,431.3 114,435.8 119.5,435.8 z M173.2,435.8 C178.7,435.8 183.1,431.4 183.1,425.9 L183.1,403.9 C183.1,398.4 178.7,394 173.2,394 167.7,394 163.3,398.4 163.3,403.9 L163.3,425.9 C163.3,431.3 167.8,435.8 173.2,435.8 z M227,435.8 C232.5,435.8 236.9,431.4 236.9,425.9 L236.9,403.9 C236.9,398.4 232.5,394 227,394 221.5,394 217.1,398.4 217.1,403.9 L217.1,425.9 C217.1,431.3 221.5,435.8 227,435.8 z" 
+                                    Style="{StaticResource IconPath}"
+                                    StrokeThickness="2.5"/>
+                        </Grid>
+                        <Grid Margin="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="12*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Data="M597.656,4.781H14.344C6.417,4.781,0,11.207,0,19.125v459c0,7.918,6.417,14.344,14.344,14.344H344.25   c7.928,0,14.344-6.426,14.344-14.344s-6.416-14.344-14.344-14.344H229.5v-38.25c0-7.918-6.417-14.344-14.344-14.344   s-14.344,6.426-14.344,14.344v38.25H28.688v-229.5h172.125v76.5c0,7.918,6.417,14.344,14.344,14.344s14.344-6.426,14.344-14.344   v-19.125h181.688c7.928,0,14.344-6.426,14.344-14.344s-6.416-14.344-14.344-14.344H229.5V90.844   c0-7.918-6.417-14.344-14.344-14.344s-14.344,6.426-14.344,14.344v114.75H28.688V33.469h554.625v229.5h-76.5v-38.25   c0-7.918-6.416-14.344-14.344-14.344s-14.344,6.426-14.344,14.344v52.594c0,7.918,6.416,14.344,14.344,14.344h90.844v286.875H459   v-95.625c0-7.918-6.416-14.344-14.344-14.344s-14.344,6.426-14.344,14.344v109.969c0,7.918,6.416,14.344,14.344,14.344h153   c7.928,0,14.344-6.426,14.344-14.344V19.125C612,11.207,605.584,4.781,597.656,4.781z"                           
+                                    Grid.Column="1"
+                                    StrokeThickness="3"
+                                    Style="{StaticResource IconPath}"/>
+                        </Grid>
+                        <Grid Margin="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="12*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Data="M0.345,9.572 L9,0.708 L17.657,9.572" 
+                                    StrokeThickness="6"
+                                    Style="{StaticResource IconPath}"
+                                    Grid.Column="1"/>
+                        </Grid>
+                        <Grid Margin="0" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="12*"/>
+                            </Grid.ColumnDefinitions>
+                            <Path Data="M17.656,0.273 L9.001,9.136 L0.344,0.273" 
+                                    StrokeThickness="6"
+                                    Style="{StaticResource IconPath}"
+                                    Grid.Column="1"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Visibility="{Binding TutorialStage, ConverterParameter={StaticResource I3}, Converter={StaticResource EqualityVisibilityConverter}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1041*"/>
+                        <ColumnDefinition Width="239*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="102*"/>
+                        <RowDefinition Height="96*"/>
+                        <RowDefinition Height="111*"/>
+                        <RowDefinition Height="192*"/>
+                        <RowDefinition Height="18*"/>
+                        <RowDefinition Height="171*"/>
+                        <RowDefinition Height="168*"/>
+                        <RowDefinition Height="240*"/>
+                        <RowDefinition Height="183*"/>
+                        <RowDefinition Height="99*"/>
+                        <RowDefinition Height="148*"/>
+                        <RowDefinition Height="72*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Обучение: 4/4"
+                        Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        FontSize="140"
+                        Foreground="White"
+                        FontFamily="../../Fonts/#Roboto" Margin="821.89,0,343.89,0" VerticalContentAlignment="Center" Width="916.22"/>
+                    <Grid Margin="0" Grid.Row="1" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25*"/>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="25*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Ellipse Fill="#7FFFFFFF" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" />
+                            <Ellipse Fill="#7FFFFFFF" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="1" />
+                            <Ellipse Fill="#7FFFFFFF" Stroke="#00000000" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="45" Height="45" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="2" />
+                            <Ellipse Fill="White" Stroke="Transparent" StrokeThickness="5" StrokeMiterLimit="10" Margin="0" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Uniform" Grid.Column="4" />
+                        </Grid>
+                    </Grid>
+                    <Grid Margin="0" Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="167*"/>
+                            <ColumnDefinition Width="1840*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Stretch="Uniform" Margin="0" Grid.Column="1">
+                            <StackPanel Orientation="Vertical"
+                                    HorizontalAlignment="Center">
+                                <TextBlock Text="Нажав на иконку информации вы укзнаете о планах здания."
+                                    HorizontalAlignment="Center"
+                                    FontFamily="../../Fonts/#Roboto"
+                                    Foreground="White" FontSize="8"/>
+                            </StackPanel>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Margin="0" Grid.Row="8" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28*"/>
+                            <ColumnDefinition Width="18*"/>
+                            <ColumnDefinition Width="28*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource RoundedButton}"
+                            Command="{Binding NextTutorialStageCommand}"
+                            Content="Приступить"
+                            FontFamily="../../Fonts/#Roboto"
+                            FontSize="80"
+                            Margin="0" Grid.Column="1" FontWeight="Bold"/>
+                    </Grid>
+                    <Grid Margin="0" Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="167*"/>
+                            <ColumnDefinition Width="1840*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Stretch="Uniform" Margin="0" Grid.Column="1">
+                            <StackPanel Orientation="Vertical"
+                                HorizontalAlignment="Center">
+                                <TextBlock Text="Нажав на иконку входа вы попадете в режим интерьера."
+                                    HorizontalAlignment="Center"
+                                    FontFamily="../../Fonts/#Roboto"
+                                    Foreground="White" FontSize="8"/>
+                            </StackPanel>
+                        </Viewbox>
+                    </Grid>
+                    <Grid Margin="181.975,24" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="120" Width="114.05">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Path Style="{StaticResource IconPath}"
+                                Data="M7.9919999,3.9816248 C8.2504995,3.9814999 8.5090006,4.0799999 8.7060001,4.277 8.7060001,4.277 8.7060001,4.277 8.7069996,4.2779999 L13.686683,9.2745333 13.707,9.2930002 13.726823,9.3148088 13.731,9.3190002 13.771557,9.3640251 C13.91425,9.5369062 14,9.7585001 14,10 14,10.276 13.888,10.526 13.707,10.707 L13.673995,10.736999 8.7069996,15.722 C8.7060001,15.723 8.7060001,15.723 8.7060001,15.723 8.3120001,16.117001 7.6719998,16.117001 7.2779997,15.722 6.8829997,15.327 6.8829997,14.687 7.2779997,14.292 L10.570767,11 0.99999964,11 C0.44799984,11 -1.7881386E-07,10.552 5.6843419E-14,10 -1.7881386E-07,9.448 0.44799984,9 0.99999964,9 L10.570999,9 7.2779997,5.7069998 C6.8839996,5.3119998 6.8839996,4.6729999 7.2779997,4.2779999 7.4749997,4.0804996 7.7334998,3.98175 7.9919999,3.9816248 z M11,0 L17,0 C17.03453,0 17.068857,0.00087402342 17.102957,0.0026011467 17.137058,0.0043283082 17.170933,0.006908569 17.204559,0.01032114 17.238186,0.01373352 17.271566,0.01797821 17.30468,0.023034215 17.337791,0.028090209 17.370638,0.033957519 17.403192,0.040615201 17.435749,0.047272947 17.468017,0.054721069 17.499975,0.062938631 17.531933,0.071156308 17.563581,0.080143429 17.594898,0.089879036 17.626217,0.099614866 17.657203,0.11009918 17.687839,0.12131125 17.718475,0.13252319 17.74876,0.14446288&#xA;17.778671,0.1571095 17.808584,0.16975586 17.838123,0.18310913 17.867269,0.19714832 17.896417,0.21118744 17.925171,0.22591247 17.953508,0.24130255 17.981848,0.2566925 18.009773,0.27274749 18.037264,0.28944671 18.064754,0.30614561 18.091808,0.32348877 18.118408,0.34145504 18.145006,0.35942137 18.17115,0.37801087 18.196817,0.39720267 18.222483,0.41639432 18.247673,0.43618834 18.272363,0.45656383 18.297056,0.47693908 18.321251,0.49789581 18.344925,0.51941305 18.368601,0.54093015&#xA;18.391758,0.56300777 18.414375,0.58562517 18.436992,0.60824215 18.45907,0.63139892 18.480587,0.65507442 18.502104,0.67874968 18.52306,0.70294368 18.543436,0.72763562 18.563812,0.75232726 18.583605,0.77751678 18.602796,0.80318302 18.621988,0.82884943 18.640579,0.85499263 18.658544,0.88159174 18.676512,0.90819091 18.693853,0.93524599 18.710554,0.96273601 18.727253,0.99022609 18.743307,1.0181512 18.758697,1.0464904 18.774088,1.0748297 18.788812,1.1035831 18.802851,1.1327296&#xA;18.816891,1.1618762 18.830244,1.1914159 18.84289,1.221328 18.855537,1.2512403 18.867477,1.2815247 18.878689,1.3121605 18.8899,1.3427962 18.900385,1.3737835 18.91012,1.4051014 18.919857,1.436419 18.928844,1.4680673 18.937061,1.500025 18.945278,1.5319829 18.952726,1.5642503 18.959385,1.5968066 18.966041,1.6293628 18.97191,1.6622076 18.976965,1.6953204 18.982021,1.7284328 18.986267,1.7618133 18.989679,1.7954407 18.993091,1.8290679 18.995672,1.8629422&#xA;18.997398,1.8970424 18.999126,1.9311424 19,1.9654686 19,1.9999999 L19,18 C19,18.034531 18.999126,18.068857 18.997398,18.102957 18.995672,18.137058 18.993091,18.170933 18.989679,18.204559 18.986267,18.238186 18.982021,18.271566 18.976965,18.30468 18.97191,18.337791 18.966041,18.370638 18.959385,18.403193 18.952726,18.435749 18.945278,18.468018 18.937061,18.499975 18.928844,18.531933 18.919857,18.563581 18.91012,18.594898 18.900385,18.626217 18.8899,18.657204 18.878689,18.68784 18.867477,18.718475 18.855537,18.74876&#xA;18.84289,18.778671 18.830244,18.808584 18.816891,18.838123 18.802851,18.86727 18.788812,18.896418 18.774088,18.925171 18.758697,18.95351 18.743307,18.981848 18.727253,19.009773 18.710552,19.037264 18.693853,19.064754 18.676512,19.091808 18.658544,19.118408 18.640579,19.145006 18.621988,19.17115 18.602796,19.196817 18.583605,19.222483 18.563812,19.247673 18.543436,19.272364 18.52306,19.297056 18.502104,19.321251 18.480587,19.344925 18.45907,19.368601&#xA;18.436992,19.391758 18.414375,19.414375 18.391758,19.436993 18.368601,19.45907 18.344925,19.480587 18.321251,19.502104 18.297056,19.52306 18.272363,19.543436 18.247673,19.563812 18.222483,19.583605 18.196817,19.602797 18.17115,19.621988 18.145006,19.640579 18.118408,19.658545 18.091808,19.676512 18.064754,19.693853 18.037264,19.710554 18.009773,19.727253 17.981848,19.743307 17.953508,19.758698 17.925171,19.774088 17.896417,19.788813 17.867269,19.802853&#xA;17.838123,19.816891 17.808584,19.830244 17.778671,19.84289 17.74876,19.855537 17.718475,19.867477 17.687839,19.878689 17.657203,19.8899 17.626217,19.900385 17.594898,19.910122 17.563581,19.919857 17.531933,19.928844 17.499975,19.937061 17.468017,19.945278 17.435749,19.952726 17.403192,19.959385 17.370638,19.966042 17.337791,19.97191 17.30468,19.976965 17.271566,19.982021 17.238186,19.986267 17.204559,19.989679 17.170933,19.993092 17.137058,19.995672&#xA;17.102957,19.997398 17.068857,19.999126 17.03453,20 17,20 L11,20 C10.448,20 9.9999998,19.552 9.9999998,19 9.9999998,18.448 10.448,18 11,18 L17,18 17,1.9999999 11,1.9999999 C10.448,2 9.9999998,1.552 9.9999998,0.99999994 9.9999998,0.44800001 10.448,0 11,0 z"
+                                Fill="White"
+                                Grid.Column="1"
+                                Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Margin="208.235,24.429" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="122.142" Width="61.53">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Path Style="{StaticResource IconPath}"
+                            Data="M9.172,0c1.287-0.151,2.453,0.771,2.604,2.058c0.011,0.097,0.017,0.194,0.016,0.292  C11.63,4.131,10.086,5.464,8.3,5.362c-1.655,0-2.621-0.9-2.575-2.387C5.863,1.205,7.401-0.122,9.172,0z M3.794,24  c-1.379,0-2.391-0.783-1.425-4.228l1.583-6.11c0.276-0.978,0.321-1.37,0-1.37c-1.153,0.267-2.255,0.721-3.263,1.342L0,12.577  c3.356-2.622,7.216-4.16,8.87-4.16c1.379,0,1.609,1.526,0.92,3.875l-1.813,6.423c-0.322,1.135-0.183,1.526,0.137,1.526  c1.133-0.234,2.195-0.73,3.1-1.45L12,19.77C8.736,22.824,5.173,24,3.794,24z"
+                            Fill="White"
+                            Grid.Column="1"
+                            Grid.Row="1"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Viewbox>
+        <Grid Grid.RowSpan="2"
+              Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="581*"/>
+                <ColumnDefinition Width="35*"/>
+                <ColumnDefinition Width="24*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="21*"/>
+                <RowDefinition Height="32*"/>
+                <RowDefinition Height="15*"/>
+                <RowDefinition Height="32*"/>
+                <RowDefinition Height="347*"/>
+            </Grid.RowDefinitions>
+            <Button Style="{StaticResource TransparentButton}"
+                    Command="{Binding ToggleMenuCommand}"
+                    Grid.Column="1"
+                    Grid.Row="1">
+                <Path StrokeThickness="0.5" 
+                      StrokeMiterLimit="10" 
+                      Data="M1,0h24c0.552,0,1,0.448,1,1s-0.448,1-1,1H1C0.448,2,0,1.552,0,1S0.448,0,1,0z M1,16h24c0.552,0,1,0.448,1,1	s-0.448,1-1,1H1c-0.552,0-1-0.448-1-1S0.448,16,1,16z M1,8h24c0.552,0,1,0.448,1,1s-0.448,1-1,1H1c-0.552,0-1-0.448-1-1S0.448,8,1,8	z"
+                      Stretch="Uniform"
+                      Stroke="White"
+                      Fill="White"
+                      Style="{StaticResource IconPath}"/>
+            </Button>
+            <ToggleButton Style="{StaticResource TransparentToggleButton}"
+                          Command="{Binding MuteCommand}"
+                          CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=IsChecked}"
+                          Name="_muteButton"
+                          IsChecked="{Binding IsMuted, Mode=OneWay}"
+                          Grid.Column="1"
+                          Grid.Row="3">
+                <Grid>
+                    <Path StrokeThickness="0.5" 
+                          StrokeMiterLimit="10" 
+                          Data="M2,20h4c0.3,0.294,6.746,5.7,6.746,5.7c0.381,0.216,0.816,0.32,1.254,0.3c0.53-0.05,0.95-0.47,1-1	c0.007-0.052,0.008-23.948,0-24c-0.05-0.53-0.47-0.95-1-1c-0.437-0.026-0.872,0.073-1.255,0.285C12.745,0.285,6.3,6.708,6,7H2	C0.956,7.135,0.135,7.956,0,9v9C0.134,19.044,0.956,19.866,2,20z M20.621,6.3c-0.291-0.368-0.825-0.43-1.193-0.139	C19.377,6.201,19.33,6.248,19.289,6.3c-0.368,0.454-0.368,1.104,0,1.558c1.193,1.441,1.837,3.259,1.815,5.13	c0.021,1.873-0.622,3.693-1.815,5.138c-0.368,0.456-0.368,1.108,0,1.564c0.293,0.368,0.828,0.429,1.196,0.136	c0.05-0.04,0.096-0.086,0.136-0.136c1.556-1.883,2.395-4.257,2.367-6.7C23.016,10.55,22.178,8.179,20.621,6.3z M25.045,2.335	c-0.524-0.449-1.297-0.449-1.821,0c-0.416,0.45,0.494,1.495,0.911,1.945c2.32,2.478,2.726,5.52,2.728,8.764	c0.023,3.331-1.221,6.546-3.48,8.995c-0.46,0.448-0.526,1.163-0.158,1.688c0.264,0.198,0.591,0.293,0.92,0.269	c0.289-0.002,0.566-0.122,0.763-0.334c2.662-2.893,4.129-6.687,4.106-10.618c0.071-3.942-1.346-7.766-3.969-10.71V2.335z"
+                          Stretch="Uniform"
+                          Stroke="White"
+                          Fill="White"
+                          Visibility="{Binding ElementName=_muteButton, Path=IsChecked, Converter={StaticResource BoolToVisConverter}}"
+                          Style="{StaticResource IconPath}"/>
+                    <Path StrokeThickness="0.5" 
+                          StrokeMiterLimit="10" 
+                          Data="M2,20h4c0.3,0.294,6.745,5.7,6.745,5.7c0.382,0.217,0.817,0.321,1.255,0.3c0.53-0.05,0.95-0.47,1-1	c0.006-0.052,0.008-23.948,0-24c-0.05-0.53-0.47-0.95-1-1c-0.437-0.026-0.872,0.073-1.255,0.285C12.745,0.285,6.3,6.708,6,7H2	C0.956,7.135,0.135,7.956,0,9v9C0.134,19.044,0.956,19.866,2,20z M28.648,8.316c-0.431-0.429-1.128-0.429-1.559,0l-3.116,3.107	l-3.118-3.107c-0.409-0.449-1.105-0.481-1.554-0.072c-0.449,0.409-0.481,1.105-0.072,1.554c0.023,0.025,0.046,0.049,0.071,0.071	l3.116,3.1L19.3,16.08c-0.412,0.446-0.384,1.142,0.062,1.554c0.422,0.39,1.074,0.389,1.495-0.002l3.118-3.1l3.116,3.1	c0.431,0.429,1.128,0.429,1.559,0c0.429-0.426,0.431-1.119,0.005-1.547c-0.002-0.002-0.003-0.003-0.005-0.005l-3.116-3.107	l3.116-3.1c0.429-0.423,0.434-1.115,0.011-1.544C28.657,8.324,28.652,8.32,28.648,8.316z"
+                          Stretch="Uniform"
+                          Stroke="White"
+                          Fill="White"
+                          Visibility="{Binding ElementName=_muteButton, Path=IsChecked, Converter={StaticResource InverseBoolToVisConverter}}"
+                          Style="{StaticResource IconPath}"/>
+
+                </Grid>
+            </ToggleButton>
+        </Grid>
+        <Viewbox Grid.ColumnSpan="3"
+                 Grid.RowSpan="2"
+                 Stretch="Fill">
+            <Grid Style="{StaticResource SlidingInUserControl}"
+                  Width="2560"
+                  Height="1600"
+                  local:AnimationUtilities.IsVisible="{Binding IsMenuVisible}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Column="1"
+                         Grid.Row="0"
+                         Stretch="Uniform">
+                        <Button Width="800"
+                            Height="800"
+                            Style="{StaticResource TransparentButton}"
+                            Command="{Binding ToggleMenuCommand}" 
+                            HorizontalContentAlignment="Center"
+                            Foreground="{x:Null}" 
+                            Background="Transparent" 
+                            BorderBrush="{x:Null}" 
+                            Margin="0" 
+                            VerticalContentAlignment="Center">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Path Data="M17.093772,0.00010668486 C17.306161,0.0032852739 17.518813,0.07752356 17.693376,0.22583617 18.092376,0.56483606 18.140374,1.1628361 17.801376,1.5618359 17.769376,1.599836 17.734374,1.635836 17.696374,1.667836 L10.311568,9.0664227 17.665376,16.429836 C18.036374,16.799836 18.036374,17.399837 17.666375,17.770835 17.296375,18.141835 16.696374,18.141835 16.325376,17.771837 L8.9731867,10.4073 1.6183752,17.775836 C1.2473751,18.145835 0.64737512,18.145835 0.27737523,17.774837 -0.092624897,17.403836 -0.092624897,16.803836 0.27837516,16.433835 L7.6353676,9.0672343 0.24837501,1.667836 C-0.097624892,1.2748361 -0.059624894,0.67583603 0.33337505,0.32983611 0.69137509,0.013836052 1.2283751,0.013836052 1.5863751,0.32983611 L8.9738724,7.7269814 16.357375,0.33383606 C16.548063,0.10939856 16.820699,-0.0039803535 17.093772,0.00010668486 z" 
+                                      Style="{StaticResource IconPath}"
+                                      StrokeThickness="2" 
+                                      Margin="0" 
+                                      Grid.Row="1"
+                                      Stroke="{x:Null}"
+                                      Fill="White"/>
+                            </Grid>
+                        </Button>
+                    </Viewbox>
+                </Grid>
+                <Viewbox Grid.Column="1"
+                         Stretch="Uniform">
+                    <Grid Background="White"
+                      Width="1280"
+                      Height="1600">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="10*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--<Button Grid.Column="1"
+                                Grid.Row="0" 
+                                Style="{StaticResource TransparentButton}" 
+                                Command="{Binding ShowAimCommand}"
+                                HorizontalContentAlignment="Left" 
+                                BorderBrush="{x:Null}"
+                                Margin="0,20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="11*"/>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Stretch="Uniform">
+                                    <Path StrokeThickness="2" 
+                                      StrokeMiterLimit="10" 
+                                      Data="M8.164,6 L9.836,6 C9.927,6 10,6.073 10,6.164 L10,11.837 C9.999,11.927 9.926,12 9.836,12 L8.164,12 C8.073,12 8,11.927 8,11.836 L8,6.164 C8,6.073 8.073,6 8.164,6 z M6.164,8 L11.837,8 C11.927,8.001 12,8.074 12,8.164 L12,9.836 C12,9.927 11.927,10 11.836,10 L6.164,10 C6.073,10 6,9.927 6,9.836 L6,8.164 C6,8.073 6.073,8 6.164,8 z M12,0 L18,0 18,6 17,6 17,1 12,1 12,0 z M6,0 L0,0 0,6 1,6 1,1 6,1 6,0 z M12,18 L18,18 18,12 17,12 17,17 12,17 12,18 z M6,18 L0,18 0,12 1,12 1,17 6,17 6,18 z M6.164,8 L11.836,8 C11.927,8 12,8.073 12,8.164 L12,9.836 C12,9.927 11.927,10 11.836,10 L6.164,10 C6.073,10 6,9.927 6,9.836 L6,8.164 C6,8.073 6.073,8 6.164,8 z M8.164,6 L9.836,6 C9.927,6 10,6.073 10,6.164 L10,11.836 C10,11.927 9.927,12 9.836,12 L8.164,12 C8.073,12 8,11.927 8,11.836 L8,6.164 C8,6.073 8.073,6 8.164,6 z" 
+                                      Stretch="Uniform"
+                                      Stroke="Black"
+                                      Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
+                                </Viewbox>
+                                <TextBlock Grid.Column="1"
+                                           FontSize="50"
+                                           Foreground="Black"
+                                           FontFamily="../../Fonts/#Roboto"
+                                           Text="Создать новую метку" 
+                                           Margin="20" 
+                                           HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>-->
+                        <Button Grid.Column="1"
+                                Grid.Row="0" 
+                                Style="{StaticResource TransparentButton}" 
+                                Command="{Binding ShowTutorialCommand}"
+                                HorizontalContentAlignment="Left"
+                                BorderBrush="{x:Null}"
+                                Margin="0,20">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox Stretch="Uniform">
+                                    <Path StrokeThickness="2" 
+                                      StrokeMiterLimit="10" 
+                                      Data="M18,3.391c0.124-0.638-0.293-1.256-0.931-1.38C17.046,2.007,17.023,2.003,17,2L9.372,0.041	c-0.247-0.056-0.504-0.056-0.751,0L1,2C0.356,2.086-0.097,2.678-0.011,3.322C-0.008,3.345-0.004,3.368,0,3.391	C-0.135,4.106,0.299,4.805,1,5l2,1v3c0,1.5,1.521,3,6,3s6-1.5,6-3V6l2-1C17.701,4.805,18.135,4.106,18,3.391z M14,9	c0,0.625-1.625,2-5,2S4,9.624,4,9V6l4.627,0.741c0.247,0.056,0.504,0.056,0.751,0L14,6V9z M9.126,5.638L9,5.652L8.873,5.638L2,4	C1.633,3.936,1.313,3.713,1.125,3.391C1.342,3.134,1.664,2.99,2,3l6.873-1.856L9,1.13l0.126,0.014L16,3	c0.336-0.01,0.658,0.134,0.875,0.391C16.687,3.713,16.367,3.936,16,4L9.126,5.638z M16,6.541v3.908c0,0.276,0.224,0.5,0.5,0.5	s0.5-0.224,0.5-0.5V6.541c0-0.276-0.224-0.5-0.5-0.5S16,6.265,16,6.541z"
+                                      Stretch="Uniform"
+                                      Stroke="Transparent"
+                                      Fill="Black"
+                                      Style="{StaticResource IconPath}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,5"/>
+                                </Viewbox>
+                                <TextBlock Grid.Column="1"
+                                           FontSize="50"
+                                           Margin="20"
+                                           Foreground="Black"
+                                           FontFamily="../../Fonts/#Roboto"
+                                           Text="Обучение" 
+                                           HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                            </Grid>
+                        </Button>
+                    </Grid>
+                </Viewbox>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>
