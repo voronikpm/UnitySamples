@@ -1,0 +1,119 @@
+﻿<UserControl x:Class="Assets.Scripts.UI.OverlayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Assets.Scripts.UI"
+             xmlns:enums="clr-namespace:Assets.Scripts.Enums"
+             xmlns:converters="clr-namespace:Assets.Scripts.Converters"
+             xmlns:viewModels="clr-namespace:Assets.Scripts.ViewModels"
+             IsManipulationEnabled="False"
+             ManipulationDelta="UserControl_ManipulationDelta"
+             mc:Ignorable="d"
+             d:DesignHeight="1600" d:DesignWidth="2560">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:SceneVisibiltyConverter x:Key="SceneVisibilityConverter"/>
+
+            <DataTemplate DataType="{x:Type viewModels:MainMenuViewModel}">
+                <local:MainMenuView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:TurbineViewModel}">
+                <local:TurbineView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:HouseViewModel}">
+                <local:HouseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:GameViewModel}">
+                <local:GameView/>
+            </DataTemplate>
+            <!--<DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
+                <local:SettingsView Style="{StaticResource SlidingInUserControl}" local:AnimationUtilities.IsVisible="{Binding IsVisible}"/>
+            </DataTemplate>-->
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="79*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="405*"/>
+            <RowDefinition Height="130*"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="179*"/>
+            <ColumnDefinition Width="121*"/>
+            <ColumnDefinition Width="297*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="297*"/>
+            <ColumnDefinition Width="123*"/>
+            <ColumnDefinition Width="177*"/>
+        </Grid.ColumnDefinitions>
+        <Viewbox Grid.ColumnSpan="8" 
+                            Grid.RowSpan="5" Stretch="Fill">
+        <ContentControl Content="{Binding CurrentViewModel}"
+                            IsEnabled="{Binding IsEnabled}" Height="1600" Width="2560"
+                            />
+        </Viewbox>
+
+        <Viewbox Stretch="Uniform" Grid.ColumnSpan="8"
+                  Grid.RowSpan="5" >
+        <Grid Height="1600" Width="2560"
+                  Background="Transparent"
+                  x:Name="_splashScreenGrid"
+                  TouchUp="Grid_TouchUp">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="79*"/>
+                <RowDefinition Height="33*"/>
+                <RowDefinition Height="405*"/>
+                <RowDefinition Height="130*"/>
+                <RowDefinition Height="73*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="179*"/>
+                <ColumnDefinition Width="121*"/>
+                <ColumnDefinition Width="297*"/>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="297*"/>
+                <ColumnDefinition Width="123*"/>
+                <ColumnDefinition Width="177*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="2" Margin="0" Focusable="False" Grid.Row="2" Background="{StaticResource Gray}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="79*"/>
+                    <RowDefinition Height="37*"/>
+                </Grid.RowDefinitions>
+                <TextBox TextWrapping="Wrap" Focusable="False" IsReadOnly="True" Text="{Binding SelectedLanguage[Help1]}" FontSize="36" FontFamily="../../Fonts/#Neo Sans Cyr" Background="#FFD1D1D1" Foreground="#FF5D5D5D" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" FontWeight="Bold" Grid.Row="1"/>
+                <Image HorizontalAlignment="Center" Focusable="False" VerticalAlignment="Top" Source="../../Images/Help1pa.png" Margin="38.988,23,45.052,0"/>
+            </Grid>
+            <Grid Grid.Column="5" Grid.Row="2" Focusable="False" Background="#FF5D5D5D">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="79*"/>
+                    <RowDefinition Height="37*"/>
+                </Grid.RowDefinitions>
+                <TextBox TextWrapping="Wrap" Focusable="False" IsReadOnly="True" Text="{Binding SelectedLanguage[Help2]}" FontSize="36" FontFamily="../../Fonts/#Neo Sans Cyr" Background="#FFD1D1D1" Foreground="#FF5D5D5D" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" FontWeight="Bold" Grid.Row="1"/>
+                <Image HorizontalAlignment="Center" Focusable="False" Source="../../Images/Help2pa.png" Margin="27.895,0,27.895,24"/>
+            </Grid>
+            <Label Focusable="False" FocusVisualStyle="{x:Null}" Content="{Binding SelectedLanguage[Help3]}" FontSize="64" FontFamily="../../Fonts/#Neo Sans Cyr" Background="{x:Null}" Foreground="#FF5D5D5D" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" FontWeight="Bold" Grid.Row="3" Grid.ColumnSpan="6" Grid.Column="1"/>
+        </Grid>
+        </Viewbox>
+        <!--<Label Grid.Column="5"
+               Grid.Row="0"
+               FontSize="48"
+               Content="{Binding Framerate}"/>-->
+        <!--<local:SettingsView Style="{StaticResource SlidingInUserControl}" 
+                                local:AnimationUtilities.IsVisible="{Binding IsSettingsShown}" 
+                                DataContext="{Binding SettingsViewModel}"/>-->
+        <!--<ContentControl Content="{Binding SettingsContext}"/>-->
+        <local:SettingsView Style="{StaticResource SlidingInUserControl}" 
+                                DataContext="{Binding SettingsContext}"
+                                Grid.ColumnSpan="8" 
+                                Grid.RowSpan="5"                                
+                                local:AnimationUtilities.IsVisible="{Binding IsVisible}"/>
+    </Grid>
+</UserControl>

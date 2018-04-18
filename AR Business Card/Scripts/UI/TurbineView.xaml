@@ -1,0 +1,394 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Assets.Scripts.UI"
+             xmlns:enums="clr-namespace:Assets.Scripts.Enums"
+             xmlns:converters="clr-namespace:Assets.Scripts.Converters"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             x:Class="Assets.Scripts.UI.TurbineView"
+             xmlns:viewModels="clr-namespace:Assets.Scripts.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="1600" d:DesignWidth="2560">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+            <converters:EqualityBoolConverter x:Key="EqualityToBoolConverter"/>
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converters:EqualityToVisibilityConverter x:Key="EqualityToVisConverter"/>
+            <converters:EnumToBoolConverter x:Key="EnumToBoolConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="94*"/>
+            <RowDefinition Height="393*"/>
+            <RowDefinition Height="131*"/>
+            <RowDefinition Height="65*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Viewbox Stretch="Uniform" Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid 
+               Background="{DynamicResource DarkGray}" Width="2560" Height="80">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="253*"/>
+                    <ColumnDefinition Width="906*"/>
+                    <ColumnDefinition Width="27*"/>
+                    <ColumnDefinition Width="34*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="38*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="{Binding SelectedLanguage[TurbineTitle]}" Style="{StaticResource LabelInfoPanel}" FontSize="40" Margin="0,0,76.667,1.429"/>
+                <Button Command="{Binding ShareCommand}"
+                        Grid.Column="3"
+                        Background="Transparent"
+                        Style="{StaticResource ButtonStyleContent}">
+                    <Grid Margin="6" Background="Transparent">
+                        <Path Data="M320.159,405.189c0,2.495-2.02,4.509-4.508,4.509c-2.486,0-4.504-2.014-4.504-4.509
+      c0-0.319,0.036-0.634,0.102-0.939l-10.236-5.118c-0.826,0.942-2.029,1.557-3.382,1.557c-2.49,0-4.507-2.02-4.507-4.51
+      c0-2.485,2.017-4.505,4.507-4.505c1.353,0,2.556,0.609,3.378,1.558l10.238-5.118c-0.064-0.306-0.1-0.62-0.1-0.943
+      c0-2.486,2.018-4.505,4.504-4.505c2.488,0,4.508,2.019,4.508,4.505c0,2.49-2.02,4.504-4.508,4.504
+      c-1.354,0-2.554-0.609-3.38-1.557l-10.238,5.119c0.064,0.31,0.103,0.619,0.103,0.942c0,0.328-0.039,0.644-0.103,0.943
+      l10.238,5.119c0.826-0.943,2.025-1.553,3.38-1.553C318.14,400.689,320.159,402.702,320.159,405.189z" 
+                              Stretch="Uniform" 
+                              Stroke="{StaticResource BorderBrush}" 
+                              StrokeThickness="2"
+                              Fill="{StaticResource White}">
+                        </Path>
+                    </Grid>
+                </Button>
+                <Button Command="{Binding SettingsCommand}" 
+                        Margin="0" 
+                        Grid.Column="5"
+                        Background="Transparent"
+                        Style="{StaticResource ButtonStyleContent}" RenderTransformOrigin="0.5,0.511">
+                    <Grid Margin="6" Background="Transparent">
+                        <Path Data="M312.923,400.843v-4.133l-4.461-0.74c-0.313-1.34-0.842-2.588-1.548-3.726l2.638-3.681l-2.919-2.924     l-3.693,2.628c-1.134-0.707-2.383-1.237-3.723-1.542l-0.753-4.462h-4.126l-0.745,4.462c-1.334,0.305-2.586,0.835-3.721,1.542     l-3.69-2.628l-2.919,2.924l2.637,3.681c-0.709,1.138-1.241,2.386-1.555,3.726l-4.464,0.74v4.133l4.464,0.743     c0.313,1.343,0.846,2.591,1.555,3.736l-2.637,3.684l2.919,2.921l3.69-2.636c1.135,0.715,2.387,1.243,3.721,1.546l0.745,4.465     h4.126l0.753-4.465c1.34-0.303,2.589-0.831,3.723-1.546l3.693,2.636l2.919-2.921l-2.638-3.684     c0.706-1.145,1.235-2.393,1.548-3.736L312.923,400.843z M296.404,407.044c-4.559,0-8.264-3.702-8.264-8.262     c0-4.561,3.705-8.259,8.264-8.259c4.564,0,8.267,3.697,8.267,8.259C304.671,403.341,300.968,407.044,296.404,407.044z" 
+                              Stretch="Uniform" 
+                              Stroke="{StaticResource BorderBrush}" 
+                              StrokeThickness="2"
+                              Fill="{StaticResource White}" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="22.5"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+                </Button>
+            </Grid>
+        </Viewbox>
+        <Viewbox Stretch="Uniform" Grid.Row="2"
+                  Grid.Column="1">
+        <Grid 
+                  Visibility="{Binding IsTargetContainerShown, Converter={StaticResource BoolToVisConverter}}">
+            <Path Data="M358.764,553.301l-0.136-0.715c-6.349,1.194-12.897,1.838-19.595,1.838  c-29.206,0-55.643-11.839-74.779-30.977c-4.909-4.908-9.32-10.31-13.189-16.104l-0.602,0.395  c19.09,28.58,51.621,47.411,88.57,47.411C345.778,555.149,352.369,554.503,358.764,553.301z M339.031,288.575  c20.322,0,39.752,3.794,57.638,10.699l-1.288,3.34c14.824,5.722,28.55,13.642,40.799,23.349l2.229-2.813  c4.844,3.839,9.463,7.95,13.828,12.313c4.237,4.238,8.23,8.718,11.973,13.407l-2.799,2.233  c21.359,26.758,34.133,60.66,34.136,97.565c-0.001,19.521-3.584,38.199-10.11,55.429l3.349,1.268  c-8.108,21.4-20.661,40.617-36.548,56.505c-5.438,5.435-11.262,10.483-17.432,15.097l0.431,0.582  c39.225-29.326,64.616-76.137,64.616-128.883c0-88.816-72-160.817-160.82-160.817c-6.004,0-11.924,0.348-17.757,0.99l0.079,0.722  C327.161,288.921,333.055,288.575,339.031,288.575z M249.894,359.44c15.816-15.817,35.813-27.45,58.186-33.108l-0.305-1.194  c-27.084,6.854-50.717,22.373-67.765,43.446c0.317,0.257,0.642,0.518,0.964,0.778C243.773,365.901,246.748,362.585,249.894,359.44z   M287.474,297.082l-0.232-0.688c-8.02,2.729-15.761,6.059-23.155,9.962l0.338,0.643C271.785,303.115,279.491,299.8,287.474,297.082z   M173.116,527.503c-7.185-15.074-12.338-31.189-15.219-47.928l-1.242,0.209c2.897,16.858,8.09,33.084,15.323,48.26L173.116,527.503z   M245.598,399.13c4.956-9.329,11.251-17.837,18.656-25.244c0.328-0.328,0.674-0.635,1.006-0.958l-0.501-0.519  c-7.884,7.685-14.591,16.57-19.8,26.375L245.598,399.13z M226.313,563.348c5.151,5.062,10.647,9.774,16.437,14.113l0.438-0.576  c-5.77-4.318-11.242-9.009-16.37-14.051L226.313,563.348z M276.845,355.978l-4.009-5.904c-9.652,6.571-18.284,14.524-25.625,23.567  l5.538,4.493c2.455-3.024,5.059-5.923,7.809-8.677C265.546,364.473,271,359.957,276.845,355.978z M432.87,499.013  c2.073-3.857,3.913-7.857,5.507-11.978l-0.675-0.261c-1.582,4.095-3.411,8.067-5.469,11.898L432.87,499.013z M325.865,327.501  l0.753,6.665c4.079-0.437,8.219-0.672,12.414-0.672c23.609,0.003,45.54,7.103,63.806,19.284l3.134-4.707  c2.142,1.428,4.218,2.946,6.263,4.504l0.659-0.864c-20.496-15.638-46.091-24.932-73.86-24.932  C334.582,326.779,330.192,327.035,325.865,327.501z M444.323,432.739c-4.372-29.142-20.561-54.405-43.52-70.794l-0.428,0.6  c4.785,3.415,9.294,7.194,13.439,11.341c15.616,15.616,26.363,36.09,29.793,58.96L444.323,432.739z M365.183,316.418l-0.62,3.2  c4.467,0.883,8.855,1.978,13.147,3.301l0.938-3.095C374.25,318.468,369.758,317.33,365.183,316.418z M262.017,589.03l-0.352,0.632  c22.953,12.627,49.315,19.824,77.366,19.824c0.357,0,0.711-0.012,1.066-0.015v-0.723c-0.355,0.003-0.709,0.011-1.066,0.011  C311.108,608.76,284.868,601.601,262.017,589.03z M158.094,416.378c8.885-49.995,37.186-91.648,75.77-118.587  c9.896-6.91,20.484-12.822,31.578-17.681l-0.491-1.149c-54.727,23.983-96.859,73.946-108.1,137.197  c-2.052,11.545-2.95,23.023-2.835,34.337l1.262-0.017C155.164,439.246,156.057,427.845,158.094,416.378z M120.966,409.928  c-8.144,45.847-1.542,90.9,16.38,130.306l0.242-0.11c1.771,3.888,3.65,7.724,5.638,11.498l5.581-2.935  c-21.516-40.818-30.12-88.815-21.427-137.767c10.395-58.482,43.493-107.187,88.628-138.708c8.592-5.998,17.617-11.365,27.003-16.065  l-1.877-3.759c22.043-11.021,46.03-18.403,71.06-21.486l-0.248-2.142C217.944,240.337,138.405,311.813,120.966,409.928z   M226.856,290.018c4.957-3.457,10.072-6.684,15.329-9.675l-6.127-10.788c-9.633,5.481-18.817,11.725-27.458,18.658l7.768,9.673  C219.779,295.15,223.272,292.521,226.856,290.018z M205.92,306.899l-8.429-9.09c-32.041,29.654-55.044,69.605-63.271,115.905  c-4.684,26.369-4.166,52.46,0.816,77.218l12.162-2.444c-4.684-23.272-5.169-47.8-0.763-72.602  C154.174,372.335,175.781,334.784,205.92,306.899z M180.446,364.412l2.881,1.53c8.251-15.497,18.737-29.624,31.05-41.935  c31.908-31.907,75.968-51.637,124.654-51.637c48.69,0,92.753,19.73,124.662,51.637c31.905,31.909,51.635,75.97,51.639,124.658  c-0.004,48.689-19.733,92.754-51.639,124.663c-31.909,31.903-75.972,51.637-124.662,51.637c-48.686,0-92.746-19.733-124.66-51.637  c-10.174-10.177-19.104-21.597-26.557-34.002l-2.798,1.679c31.396,52.252,88.619,87.221,154.015,87.221  c99.17,0,179.559-80.39,179.561-179.561C518.59,349.5,438.201,269.11,339.031,269.107  C270.319,269.108,210.631,307.714,180.446,364.412z M306.109,267.675c9.727-1.774,19.662-2.8,29.748-2.968l-0.011-1.264  c-10.153,0.17-20.158,1.207-29.95,2.996L306.109,267.675z M243.232,606.934l0.652-1.077c-6.527-3.956-12.774-8.291-18.704-12.981  l-0.776,0.986C230.373,598.586,236.662,602.95,243.232,606.934z M557.557,533.534l-5.29-2.036  c-2.866,7.375-6.078,14.561-9.647,21.502l5.014,2.55C551.29,548.433,554.606,541.088,557.557,533.534z M393.982,663.363l-0.53-2.073  c-25.304,6.485-52.122,8.507-79.397,5.348l-0.246,2.143C341.352,671.969,368.431,669.913,393.982,663.363z M489.883,343.284  c0.46,0.658,0.883,1.343,1.333,2.009l1.042-0.699c-10.756-15.832-23.926-30.015-39.127-41.918l-0.788,0.989  C466.806,314.99,479.457,328.353,489.883,343.284z M283.106,636.479l-4.516,15.156c7.624,2.263,15.446,4.134,23.461,5.558  c23.873,4.242,47.517,4.296,70.19,0.712l-1.826-11.558c-21.424,3.388-43.758,3.359-66.322-0.649  c-1.552-0.272-3.092-0.573-4.627-0.88l0.784-4.037C294.418,639.601,288.71,638.143,283.106,636.479z M502.471,533.066l1.082,0.559  c8.36-16.166,14.497-33.826,17.849-52.69c6.028-33.928,2.373-67.322-8.945-97.388l-1.174,0.438  c11.23,29.866,14.866,63.028,8.877,96.73C516.83,499.449,510.773,517.011,502.471,533.066z M339.031,615.878  c92.349,0,167.211-74.861,167.211-167.212c0-92.345-74.862-167.209-167.211-167.209c-92.344,0-167.205,74.864-167.205,167.209  C171.826,541.017,246.688,615.878,339.031,615.878z M221.314,330.945c30.127-30.129,71.745-48.76,117.717-48.76  c45.977,0,87.597,18.631,117.725,48.76c30.129,30.13,48.762,71.75,48.762,117.721c0,45.975-18.633,87.593-48.762,117.725  c-30.128,30.125-71.748,48.761-117.725,48.761c-45.972,0-87.59-18.636-117.717-48.761c-30.13-30.132-48.763-71.75-48.763-117.725  C172.552,402.695,191.185,361.075,221.314,330.945z M557.955,432.772l2.137-0.161c-3.493-48.447-22.872-93.624-53.758-129.218  c-0.537,0.466-1.083,0.942-1.627,1.416c5.072,5.843,9.845,11.942,14.272,18.284C541.243,354.979,555.074,392.749,557.955,432.772z   M516.71,370.281l11.322-5.066c-8.311-18.523-19.3-35.717-32.546-51.038l-9.375,8.12c4.432,5.121,8.6,10.46,12.476,16.007  C505.602,348.358,511.675,359.067,516.71,370.281z M550.546,462.858l-11.641-0.739c-0.493,7.117-1.35,14.277-2.627,21.457  c-7.185,40.413-26.01,75.793-52.417,103.358l7.106,6.794c-3.098,3.232-6.327,6.323-9.617,9.352l1.279,1.39  c33.004-30.327,56.696-71.313,65.146-118.85C549.129,478.001,550.027,470.407,550.546,462.858z M253.537,520.49l-5.493,4.557  c4.073,4.902,8.533,9.477,13.329,13.671l4.696-5.374c-1.894-1.656-3.733-3.368-5.512-5.146  C258.103,525.738,255.76,523.167,253.537,520.49z M467.893,579.746c-7.301,7.154-15.142,13.722-23.503,19.558  c-31.479,21.978-69.8,34.149-109.989,33.063l-0.034,1.26c51.213,1.381,99.386-18.647,134.421-52.967L467.893,579.746z   M498.577,602.502l-1.563-1.486c-9.876,10.22-20.704,19.447-32.315,27.554c-3.242,2.264-6.55,4.43-9.91,6.517l1.131,1.826  C471.469,627.254,485.818,615.707,498.577,602.502z M415.307,669.785l-1.886-5.333c-27.993,9.569-58.149,13.82-89.056,11.68  l-0.323,5.657C355.716,683.977,386.618,679.602,415.307,669.785z M400.45,534.733c-7.811,5.586-16.418,10.126-25.609,13.44  l0.245,0.684c9.254-3.338,17.92-7.908,25.787-13.531L400.45,534.733z M410.174,342.877l-0.684,1.035  c6.78,4.565,13.096,9.769,18.854,15.528c1.607,1.608,3.167,3.264,4.689,4.957l0.919-0.824  C426.918,355.74,418.935,348.775,410.174,342.877z M239.93,485.563c-1.981-5.328-3.563-10.852-4.673-16.546l-0.713,0.131  c1.117,5.733,2.711,11.297,4.709,16.662L239.93,485.563z M454.205,448.666c0,0.908-0.013,1.81-0.033,2.711l-2.365-0.039  c-0.08,3.422-0.332,6.803-0.709,10.143l9.035,1.032c0.514-4.545,0.789-9.165,0.789-13.847c0-13.945-2.352-27.34-6.662-39.819  l-6.361,2.197C451.974,422.835,454.205,435.486,454.205,448.666z M383.573,559.979l-2.607-6.641  c-12.708,4.993-26.549,7.738-41.039,7.738c-25.439,0-48.88-8.459-67.703-22.719l-4.299,5.685  c20.017,15.162,44.954,24.168,72.002,24.168C355.333,568.211,370.056,565.293,383.573,559.979z M370.461,347.66l0.207-0.668  c-9.996-3.108-20.615-4.805-31.635-4.805c-19.819,0-38.362,5.429-54.25,14.863l0.368,0.622c15.78-9.366,34.196-14.761,53.882-14.761  C349.977,342.911,360.533,344.574,370.461,347.66z M326.389,314.453c-12.033,1.124-23.605,3.832-34.506,7.919l1.138,3.057  c14.316-5.368,29.817-8.31,46.011-8.31c6.924,0,13.716,0.545,20.348,1.579l0.494-3.228c-0.103-0.017-0.206-0.039-0.31-0.054  L326.389,314.453z M472.637,433.74c-1.949-18.158-7.535-35.217-15.981-50.475l-2.831,1.603  c8.236,14.888,13.679,31.539,15.574,49.256L472.637,433.74z M339.116,576.097c26.784,0,51.631-8.271,72.144-22.388l-0.1-0.145  c2.025-1.394,4.021-2.824,5.958-4.33l-2.225-2.863c-20.948,16.29-47.263,25.994-75.86,25.994  c-34.163-0.003-65.075-13.844-87.464-36.231c-4.263-4.262-8.21-8.833-11.816-13.676l-1.939,1.44  c-8.459-11.374-15.053-24.216-19.319-38.08l-1.188,0.357C233.322,538.244,281.8,576.094,339.116,576.097z M465.061,440.92  l1.237-0.077c-0.965-15.918-4.854-31.045-11.134-44.855l-1.121,0.507C460.262,410.172,464.104,425.156,465.061,440.92z   M178.359,455.188c0.633,15.905,3.582,31.209,8.51,45.6l0.683-0.232c-4.902-14.328-7.836-29.564-8.467-45.396L178.359,455.188z   M339.033,595.699c81.203,0,147.031-65.829,147.031-147.033c0-81.2-65.828-147.029-147.031-147.032  c-31.265,0.001-60.245,9.77-84.071,26.409l0.731,1.048c3.421-2.389,6.965-4.618,10.593-6.713l3.389,5.888  c20.409-11.785,44.087-18.528,69.357-18.529c28.479,0.003,54.935,8.568,76.969,23.261l3.78-5.678  c8.033,5.357,15.511,11.482,22.313,18.287c5.773,5.773,11.064,12.03,15.81,18.701l-5.562,3.947  c16.138,22.695,25.621,50.436,25.624,80.413c0,1.095-0.018,2.184-0.043,3.27l-2.853-0.045  c-0.845,36.302-15.896,69.076-39.816,92.997c-24.63,24.63-58.641,39.857-96.223,39.857c-27.853,0-53.736-8.371-75.301-22.725  l-1.599,2.362c-7.682-5.115-14.831-10.972-21.336-17.477c-12.997-12.998-23.42-28.558-30.467-45.846l-6.317,2.571  c-6.912-16.965-10.73-35.519-10.73-54.966c0-14.102,2.009-27.732,5.744-40.628l-1.228-0.356  c-3.768,13.008-5.796,26.761-5.796,40.983C192.006,529.87,257.833,595.699,339.033,595.699z               " Margin="0" 
+              Stretch="UniformToFill" 
+              Stroke="{StaticResource BorderBrush}" 
+              StrokeThickness="2" 
+              Visibility="{Binding IsTargetShown, Converter={StaticResource BoolToVisConverter}}"
+              Tag="{Binding TargetQuality}" Grid.RowSpan="3">
+                <Path.Style>
+                    <Style TargetType="{x:Type Path}">
+                        <Style.Triggers>
+                            <Trigger Property="Tag" Value="{x:Static enums:TargetQuality.None}">
+                                <Setter Property="Fill" Value="{StaticResource TrackerNoneBrush}"/>
+                            </Trigger>
+                            <Trigger Property="Tag" Value="{x:Static enums:TargetQuality.Low}">
+                                <Setter Property="Fill" Value="{StaticResource TrackerLowBrush}"/>
+                            </Trigger>
+                            <Trigger Property="Tag" Value="{x:Static enums:TargetQuality.Medium}">
+                                <Setter Property="Fill" Value="{StaticResource TrackerMediumBrush}"/>
+                            </Trigger>
+                            <Trigger Property="Tag" Value="{x:Static enums:TargetQuality.High}">
+                                <Setter Property="Fill" Value="{StaticResource TrackerHighBrush}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Path.Style>
+            </Path>
+
+        </Grid>
+        </Viewbox>
+        <Viewbox Stretch="Uniform" Grid.ColumnSpan="3" Grid.Row="4">
+            <Grid Width="2560" Height="140" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton Content="{Binding SelectedLanguage[Details]}"
+                             GroupName="SceneState"
+                             Command="{Binding PlayCommand}"
+                             CommandParameter="{x:Static enums:TurbineState.Cut}"
+                             IsChecked="{Binding SceneState, ConverterParameter={x:Static enums:TurbineState.Cut}, Converter={StaticResource EnumToBoolConverter}, Mode=TwoWay}"
+                             Style="{StaticResource ToggleButtonStyleMain}" FontSize="36"/>
+                <RadioButton Content="{Binding SelectedLanguage[Assembly]}"
+                         FontSize="36"
+                             GroupName="SceneState"
+                             Style="{StaticResource ToggleButtonStyleMain}" 
+                             Command="{Binding PlayCommand}"
+                             IsChecked="{Binding SceneState, ConverterParameter={x:Static enums:TurbineState.Exploded}, Converter={StaticResource EnumToBoolConverter}, Mode=TwoWay}"
+                             CommandParameter="{x:Static enums:TurbineState.Exploded}"
+                             Grid.Column="1"/>
+                <RadioButton Content="{Binding SelectedLanguage[Overview]}" 
+                         FontSize="36"
+                             GroupName="SceneState"
+                             Style="{StaticResource ToggleButtonStyleMain}"
+                             Command="{Binding PlayCommand}"
+                             IsChecked="{Binding SceneState, ConverterParameter={x:Static enums:TurbineState.Default}, Converter={StaticResource EnumToBoolConverter}, Mode=TwoWay}"
+                             CommandParameter="{x:Static enums:TurbineState.Default}"
+                             Grid.Column="2"/>
+                <Button Content="{Binding SelectedLanguage[Info]}" 
+                    FontSize="36"
+                        Style="{StaticResource ButtonStyleMain}"
+                        Command="{Binding InfoCommand}"
+                        Grid.Column="3">
+                    <Button.CommandParameter>
+                        <sys:Boolean>True</sys:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+                <Button Content="{Binding SelectedLanguage[Scan]}" 
+                    FontSize="36"
+                        Style="{StaticResource ButtonStyleMain}"
+                        Command="{Binding ScanCommand}"
+                        Grid.Column="4"/>
+            </Grid>
+        </Viewbox>
+        <Canvas Grid.Row="1"
+                    Grid.RowSpan="3"
+                    Grid.ColumnSpan="3"
+                    IsManipulationEnabled="True"
+                    Background="Transparent"
+                    ManipulationStarting="ZoomCanvas_ManipulationStarting"
+                    ManipulationDelta="ZoomCanvas_ManipulationDelta"/>
+        <Viewbox Stretch="Uniform" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="3" >
+        <Grid x:Name="GridAssembly" Margin="75,30"
+                  Visibility="{Binding IsElementSelectorShown, Converter={StaticResource BoolToVisConverter}}" Height="1350" Width="2560">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="128*"/>
+                <ColumnDefinition Width="103*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="2" Margin="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <RadioButton Content="{Binding SelectedLanguage[FAN]}" 
+                                 Command="{Binding SelectElementCommand}" 
+                                 CommandParameter="{x:Static enums:TurbineElement.Fan}" 
+                                 Style="{StaticResource RadioButtonStyleMain}" 
+                                 GroupName="Assembly" 
+                                 FontSize="36" 
+                                 IsChecked="{Binding SelectedElement, ConverterParameter={x:Static enums:TurbineElement.Fan}, Converter={StaticResource EnumToBoolConverter}, Mode=TwoWay}"
+                                 HorizontalContentAlignment="Center"/>
+                <RadioButton Content="{Binding SelectedLanguage[LPC]}" 
+                                 Command="{Binding SelectElementCommand}" 
+                                 CommandParameter="{x:Static enums:TurbineElement.Lpc}" 
+                                 Style="{StaticResource RadioButtonStyleMain}" 
+                                 GroupName="Assembly" 
+                                 FontSize="36" 
+                                 IsChecked="{Binding SelectedElement, ConverterParameter={x:Static enums:TurbineElement.Lpc}, Converter={StaticResource EnumToBoolConverter}, Mode=TwoWay}"
+                                 HorizontalContentAlignment="Center" 
+                                 Grid.Row="1"/>
+                <RadioButton Content="{Binding SelectedLanguage[HPC]}" 
+                                 Command="{Binding SelectElementCommand}" 
+                                 CommandParameter="{x:Static enums:TurbineElement.Hpc}" 
+                                 Style="{StaticResource RadioButtonStyleMain}" 
+                                 GroupName="Assembly" 
+                                 FontSize="36" 
+                                 IsChecked="{Binding SelectedElement, ConverterParameter={x:Static enums:TurbineElement.Hpc}, Converter={StaticResource EnumToBoolConverter}, Mode=TwoWay}"
+                                 HorizontalContentAlignment="Center" 
+                                 Grid.Row="2"/>
+                <RadioButton Content="{Binding SelectedLanguage[SAC]}" 
+                                 Command="{Binding SelectElementCommand}" 
+                                 CommandParameter="{x:Static enums:TurbineElement.Sac}" 
+                                 Style="{StaticResource RadioButtonStyleMain}" 
+                                 GroupName="Assembly" 
+                                 FontSize="36" 
+                                 IsChecked="{Binding SelectedElement, ConverterParameter={x:Static enums:TurbineElement.Sac}, Converter={StaticResource EnumToBoolConverter}, Mode=TwoWay}"
+                                 HorizontalContentAlignment="Center" 
+                                 Grid.Row="3"/>
+                <RadioButton Content="{Binding SelectedLanguage[HPT]}" 
+                                 Command="{Binding SelectElementCommand}" 
+                                 CommandParameter="{x:Static enums:TurbineElement.Hpt}" 
+                                 Style="{StaticResource RadioButtonStyleMain}" 
+                                 GroupName="Assembly" 
+                                 FontSize="36" 
+                                 IsChecked="{Binding SelectedElement, ConverterParameter={x:Static enums:TurbineElement.Hpt}, Converter={StaticResource EnumToBoolConverter}, Mode=TwoWay}"
+                                 HorizontalContentAlignment="Center" 
+                                 Grid.Row="4"/>
+                <RadioButton Content="{Binding SelectedLanguage[LPT]}" 
+                                 Command="{Binding SelectElementCommand}" 
+                                 CommandParameter="{x:Static enums:TurbineElement.Lpt}" 
+                                 Style="{StaticResource RadioButtonStyleMain}" 
+                                 GroupName="Assembly" 
+                                 FontSize="36" 
+                                 IsChecked="{Binding SelectedElement, ConverterParameter={x:Static enums:TurbineElement.Lpt}, Converter={StaticResource EnumToBoolConverter}, Mode=TwoWay}"
+                                 HorizontalContentAlignment="Center" 
+                                 Grid.Row="5"/>
+            </Grid>
+            <Grid x:Name="FANGrid" Grid.Column="1" Background="{DynamicResource Gray}"
+                      Visibility="{Binding SelectedElement, Converter={StaticResource EqualityToVisConverter}, ConverterParameter={x:Static enums:TurbineElement.Fan}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="{Binding SelectedLanguage[FAN0]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" FontWeight="Bold"/>
+                <Label Content="{Binding SelectedLanguage[FAN1]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="1" VerticalContentAlignment="Center"/>
+                <Label Content="{Binding SelectedLanguage[FAN2]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="2"/>
+                <Label Content="{Binding SelectedLanguage[FAN3]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="3" VerticalContentAlignment="Top"/>
+                <Label Content="{Binding SelectedLanguage[FAN4]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="4"/>
+                <Label Content="{Binding SelectedLanguage[FAN5]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="5" VerticalContentAlignment="Top"/>
+                <Label Content="{Binding SelectedLanguage[FAN6]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="6"/>
+                <Label Content="{Binding SelectedLanguage[FAN7]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="7" VerticalContentAlignment="Top"/>
+                <Label Content="{Binding SelectedLanguage[FAN8]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="8"/>
+                <Label Content="{Binding SelectedLanguage[FAN9]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="9" VerticalContentAlignment="Top"/>
+            </Grid>
+            <Grid x:Name="LPCGrid" Grid.Column="1" Background="{DynamicResource Gray}"
+                      Visibility="{Binding SelectedElement, Converter={StaticResource EqualityToVisConverter}, ConverterParameter={x:Static enums:TurbineElement.Lpc}}" d:IsHidden="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="94*"/>
+                    <RowDefinition Height="74*"/>
+                    <RowDefinition Height="71*"/>
+                    <RowDefinition Height="90*"/>
+                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="93*"/>
+                    <RowDefinition Height="170*"/>
+                </Grid.RowDefinitions>
+                <Label Content="{Binding SelectedLanguage[LPC0]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" FontWeight="Bold"/>
+                <Label Content="{Binding SelectedLanguage[LPC1]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="1" VerticalContentAlignment="Center"/>
+                <Label Content="{Binding SelectedLanguage[LPC2]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="2"/>
+                <Label Content="{Binding SelectedLanguage[LPC3]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="3"/>
+                <Label Content="{Binding SelectedLanguage[LPC4]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="4" VerticalContentAlignment="Top"/>
+                <Label Content="{Binding SelectedLanguage[LPC5]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="5"/>
+                <Label Content="{Binding SelectedLanguage[LPC6]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="6" VerticalContentAlignment="Top" Margin="0,0,0,0.001"/>
+            </Grid>
+            <Grid x:Name="HPCGrid" Grid.Column="1" Background="{DynamicResource Gray}"
+                      Visibility="{Binding SelectedElement, Converter={StaticResource EqualityToVisConverter}, ConverterParameter={x:Static enums:TurbineElement.Hpc}}" d:IsHidden="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="164*"/>
+                    <RowDefinition Height="164*"/>
+                    <RowDefinition Height="164*"/>
+                    <RowDefinition Height="101*"/>
+                    <RowDefinition Height="156*"/>
+                    <RowDefinition Height="118*"/>
+                    <RowDefinition Height="142*"/>
+                    <RowDefinition Height="303*"/>
+                </Grid.RowDefinitions>
+                <Label Content="{Binding SelectedLanguage[HPC0]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" FontWeight="Bold"/>
+                <Label Content="{Binding SelectedLanguage[HPC1]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="1" VerticalContentAlignment="Center"/>
+                <Label Content="{Binding SelectedLanguage[HPC2]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="2"/>
+                <Label Content="{Binding SelectedLanguage[HPC3]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="3" VerticalContentAlignment="Top"/>
+                <Label Content="{Binding SelectedLanguage[HPC4]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="4"/>
+                <Label Content="{Binding SelectedLanguage[HPC5]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="5" VerticalContentAlignment="Top"/>
+                <Label Content="{Binding SelectedLanguage[HPC6]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="6"/>
+                <Label Content="{Binding SelectedLanguage[HPC7]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="7" VerticalContentAlignment="Top"/>
+            </Grid>
+            <Grid x:Name="SACGrid" Grid.Column="1" Background="{DynamicResource Gray}"
+                      Visibility="{Binding SelectedElement, Converter={StaticResource EqualityToVisConverter}, ConverterParameter={x:Static enums:TurbineElement.Sac}}" d:IsHidden="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="263*"/>
+                    <RowDefinition Height="145*"/>
+                    <RowDefinition Height="180*"/>
+                    <RowDefinition Height="182*"/>
+                    <RowDefinition Height="176*"/>
+                    <RowDefinition Height="368*"/>
+                </Grid.RowDefinitions>
+                <Label Content="{Binding SelectedLanguage[SAC0]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" FontWeight="Bold"/>
+                <Label Content="{Binding SelectedLanguage[SAC1]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="1" VerticalContentAlignment="Center"/>
+                <Label Content="{Binding SelectedLanguage[SAC2]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="2"/>
+                <Label Content="{Binding SelectedLanguage[SAC3]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="3"/>
+                <Label Content="{Binding SelectedLanguage[SAC4]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="4"/>
+            </Grid>
+            <Grid x:Name="HPTGrid" Grid.Column="1" Background="{DynamicResource Gray}"
+                      Visibility="{Binding SelectedElement, Converter={StaticResource EqualityToVisConverter}, ConverterParameter={x:Static enums:TurbineElement.Hpt}}" d:IsHidden="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="94*"/>
+                    <RowDefinition Height="67*"/>
+                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="58*"/>
+                    <RowDefinition Height="54*"/>
+                    <RowDefinition Height="70*"/>
+                    <RowDefinition Height="249*"/>
+                </Grid.RowDefinitions>
+                <Label Content="{Binding SelectedLanguage[HPT0]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" FontWeight="Bold"/>
+                <Label Content="{Binding SelectedLanguage[HPT1]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="1" VerticalContentAlignment="Center"/>
+                <Label Content="{Binding SelectedLanguage[HPT2]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="2"/>
+                <Label Content="{Binding SelectedLanguage[HPT3]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="3"/>
+                <Label Content="{Binding SelectedLanguage[HPT4]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="4" VerticalContentAlignment="Top"/>
+                <Label Content="{Binding SelectedLanguage[HPT5]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="5"/>
+                <Label Content="{Binding SelectedLanguage[HPT6]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="6" VerticalContentAlignment="Top"/>
+            </Grid>
+            <Grid x:Name="LPTGrid" Grid.Column="1" Background="{DynamicResource Gray}"
+                      Visibility="{Binding SelectedElement, Converter={StaticResource EqualityToVisConverter}, ConverterParameter={x:Static enums:TurbineElement.Lpt}}" d:IsHidden="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="94*"/>
+                    <RowDefinition Height="76*"/>
+                    <RowDefinition Height="79*"/>
+                    <RowDefinition Height="83*"/>
+                    <RowDefinition Height="52*"/>
+                    <RowDefinition Height="64*"/>
+                    <RowDefinition Height="209*"/>
+                </Grid.RowDefinitions>
+                <Label Content="{Binding SelectedLanguage[LPT0]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" FontWeight="Bold"/>
+                <Label Content="{Binding SelectedLanguage[LPT1]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="1" VerticalContentAlignment="Center"/>
+                <Label Content="{Binding SelectedLanguage[LPT2]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="2"/>
+                <Label Content="{Binding SelectedLanguage[LPT3]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="3"/>
+                <Label Content="{Binding SelectedLanguage[LPT4]}" Style="{StaticResource LabelInfoPanel}" FontSize="24" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="4" VerticalContentAlignment="Top"/>
+                <Label Content="{Binding SelectedLanguage[LPT5]}" Style="{StaticResource LabelInfoPanel}" FontSize="36" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="5"/>
+                <Label Style="{StaticResource LabelInfoPanel}" FontSize="16" HorizontalContentAlignment="Center" Foreground="{DynamicResource White}" Grid.Row="6" VerticalContentAlignment="Top"/>
+            </Grid>
+            <Grid Background="{DynamicResource DarkGray}">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="18*"/>
+                </Grid.RowDefinitions>
+                <Button Content="{Binding SelectedLanguage[TurbineDetails]}" 
+                    Style="{StaticResource ButtonStyleMain}"
+                    Command="{Binding SelectElementCommand}"
+                            CommandParameter="{x:Static enums:TurbineElement.None}"
+                    Margin="0,0,702,0" Background="{DynamicResource DarkGray}" Foreground="{DynamicResource White}" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
+                <Canvas x:Name="_renderTextureCanvas"
+                            IsManipulationEnabled="True"
+                            ManipulationDelta="_renderTextureCanvas_ManipulationDelta"
+                            Grid.Row="1"/>
+
+            </Grid>
+        </Grid>
+        </Viewbox>
+        <local:TurbineInfo local:AnimationUtilities.IsVisible="{Binding IsInfoShown}"
+                               Grid.ColumnSpan="3"
+                               Grid.RowSpan="5"
+                               Style="{StaticResource SlidingInUserControl}" d:IsHidden="True">
+        </local:TurbineInfo>
+    </Grid>
+</UserControl>

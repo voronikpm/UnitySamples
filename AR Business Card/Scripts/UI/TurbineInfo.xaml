@@ -1,0 +1,162 @@
+﻿<UserControl x:Class="Assets.Scripts.UI.TurbineInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Assets.Scripts.UI"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:viewModels="clr-namespace:Assets.Scripts.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="1600" d:DesignWidth="2560">
+    <UserControl.Resources>
+        <ResourceDictionary Source="Styles.xaml"/>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource DarkGray}"
+              Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="175*"/>
+        </Grid.RowDefinitions>
+        <Viewbox Stretch="Uniform" Grid.Row="2">
+            <Grid Height="1165" Width="2560" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Margin="24,40,60,60" Background="{StaticResource Gray}" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="58*"/>
+                        <RowDefinition Height="427*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Background="{StaticResource White}">
+                        <Label Content="{Binding SelectedLanguage[Info0]}" Style="{StaticResource LabelHeader}" FontSize="32"/>
+                    </Grid>
+                    <Grid Margin="20,0,20,20" Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="223*"/>
+                            <ColumnDefinition Width="97*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="27*"/>
+                            <RowDefinition Height="29*"/>
+                            <RowDefinition Height="29*"/>
+                            <RowDefinition Height="29*"/>
+                            <RowDefinition Height="29*"/>
+                            <RowDefinition Height="29*"/>
+                            <RowDefinition Height="31*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox Text="{Binding SelectedLanguage[Info1]}" Style="{StaticResource TextBoxInfoPanel}" FontSize="40" FontWeight="Bold" HorizontalContentAlignment="Left"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info2]}" Style="{StaticResource TextBoxInfoPanel}" FontSize="32" Grid.Row="1" HorizontalAlignment="Left"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info3]}" Style="{StaticResource TextBoxInfoPanel}" FontSize="32" Grid.Row="2"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info4]}" FontSize="32" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="3" HorizontalContentAlignment="Left" />
+                        <TextBox Text="{Binding SelectedLanguage[Info5]}" FontSize="32" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="4" HorizontalContentAlignment="Left" />
+                        <TextBox Text="{Binding SelectedLanguage[Info6]}" FontSize="40" Style="{StaticResource TextBoxInfoPanel}" FontWeight="Bold" Grid.Row="5" HorizontalContentAlignment="Left" />
+                        <TextBox Text="{Binding SelectedLanguage[Info7]}" FontSize="40" Style="{StaticResource TextBoxInfoPanel}" FontWeight="Bold" Grid.Row="6"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info8]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Column="1" HorizontalContentAlignment="Center" Grid.Row="1" FontSize="32"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info9]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Column="1" HorizontalContentAlignment="Center" Grid.Row="2" FontSize="32"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info10]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Column="1" HorizontalContentAlignment="Center" Grid.Row="3" FontSize="32"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info11]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Column="1" HorizontalContentAlignment="Center" Grid.Row="4" FontSize="32"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info12]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Column="1" HorizontalContentAlignment="Center" Grid.Row="5" FontSize="32"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info13]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Column="1" HorizontalContentAlignment="Center" Grid.Row="6" FontSize="32"/>
+                    </Grid>
+                </Grid>
+                <Grid Margin="25,40,24,60" Background="{StaticResource Gray}" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="57*"/>
+                        <RowDefinition Height="428*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="{Binding SelectedLanguage[Info14]}" Style="{StaticResource LabelHeader}" FontSize="32"/>
+                    <Grid Margin="20" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35*"/>
+                            <RowDefinition Height="101*"/>
+                            <RowDefinition Height="36*"/>
+                            <RowDefinition Height="100*"/>
+                            <RowDefinition Height="36*"/>
+                            <RowDefinition Height="100*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox Text="{Binding SelectedLanguage[Info15]}" Style="{StaticResource TextBoxInfoPanel}" FontSize="40" FontWeight="Bold" HorizontalContentAlignment="Left" />
+                        <TextBox Text="{Binding SelectedLanguage[Info16]}" Style="{StaticResource TextBoxInfoPanel}" FontSize="40" FontWeight="Bold" Grid.Row="2" HorizontalContentAlignment="Left"/>
+                        <TextBox Text="{Binding SelectedLanguage[Info17]}" Style="{StaticResource TextBoxInfoPanel}" FontSize="40" FontWeight="Bold" Grid.Row="4" HorizontalContentAlignment="Left"/>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBox Text="{Binding SelectedLanguage[Info18]}" Style="{StaticResource TextBoxInfoPanel}" HorizontalContentAlignment="Left" FontSize="34"/>
+                            <TextBox Text="{Binding SelectedLanguage[Info19]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="1" HorizontalContentAlignment="Left" FontSize="34"/>
+                            <TextBox Text="{Binding SelectedLanguage[Info20]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="2" HorizontalContentAlignment="Left" FontSize="34"/>
+                            <TextBox Text="{Binding SelectedLanguage[Info21]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="3" HorizontalContentAlignment="Left" FontSize="34"/>
+                        </Grid>
+                        <Grid Grid.Row="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBox Text="{Binding SelectedLanguage[Info22]}" Style="{StaticResource TextBoxInfoPanel}" HorizontalContentAlignment="Left" FontSize="34"/>
+                            <TextBox Text="{Binding SelectedLanguage[Info23]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="1" HorizontalContentAlignment="Left" FontSize="34"/>
+                            <TextBox Text="{Binding SelectedLanguage[Info24]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="2" HorizontalContentAlignment="Left" FontSize="34"/>
+                        </Grid>
+                        <Grid Margin="0" Grid.Row="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBox Text="{Binding SelectedLanguage[Info25]}" Style="{StaticResource TextBoxInfoPanel}" HorizontalContentAlignment="Left" FontSize="34" />
+                            <TextBox Text="{Binding SelectedLanguage[Info26]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="1" HorizontalContentAlignment="Left" FontSize="34"/>
+                            <TextBox Text="{Binding SelectedLanguage[Info27]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="2" HorizontalContentAlignment="Left" FontSize="34"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Margin="60,40,24,60" Background="{StaticResource Gray}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="57*"/>
+                        <RowDefinition Height="428*"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="{Binding SelectedLanguage[Info28]}" Style="{StaticResource LabelHeader}" FontSize="34"/>
+                    <Grid Margin="20" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10*"/>
+                            <RowDefinition Height="11*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox  Text="{Binding SelectedLanguage[Info29]}" FontSize="32"  Style="{StaticResource TextBoxInfoPanel}" Margin="10,10,10,0" VerticalContentAlignment="Top"/>
+                        <TextBox  Text="{Binding SelectedLanguage[Info30]}" Style="{StaticResource TextBoxInfoPanel}" Grid.Row="1" FontSize="32" VerticalContentAlignment="Top" Margin="10,0"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Viewbox>
+        <Viewbox Stretch="Uniform" Grid.Row="1">
+        <Grid Margin="45,0,50,0" Background="{StaticResource TurbineInfoBrush}" Width="2499.281" Height="362.381">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="107*"/>
+                <RowDefinition Height="68*"/>
+            </Grid.RowDefinitions>
+            <TextBox Margin="270,0,270,11" TextWrapping="Wrap" Text="{Binding SelectedLanguage[Info31]}" VerticalAlignment="Bottom" FontSize="40" FontFamily="../../Fonts/#Neo Sans Cyr" Background="#48000000" Foreground="#FFD1D1D1" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" BorderBrush="{x:Null}" Grid.Row="1"/>
+            <Label Margin="700,0,700,20" Content="{Binding SelectedLanguage[Info32]}" VerticalAlignment="Bottom" FontFamily="../../Fonts/#Neo Sans Cyr" Background="#56000000" Foreground="#FFEAEAEA" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" BorderBrush="{x:Null}" FontSize="120"/>
+        </Grid>
+        </Viewbox>
+        <Viewbox HorizontalAlignment="Center" VerticalAlignment="Top" Stretch="Uniform">
+            <Grid Height="71" Width="2560" Margin="60,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding InfoCommand}"
+                    Content="{Binding SelectedLanguage[InfoBack]}" Margin="0" Style="{StaticResource ButtonStyleTopMenu}" Foreground="#FFB9B9B9" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="294.727" FontSize="40">
+                    <Button.CommandParameter>
+                        <sys:Boolean>False</sys:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>
